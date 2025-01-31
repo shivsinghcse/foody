@@ -1,0 +1,35 @@
+{
+  "name": "foody",
+  "version": "1.0.0",
+  "description": "This is an online food ordering wep app.",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shivsinghcse/foody.git"
+  },
+  "keywords": [
+    "foody",
+    "react"
+  ],
+  "author": "Shiv Singh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shivsinghcse/foody/issues"
+  },
+  "homepage": "https://github.com/shivsinghcse/foody#readme",
+  "devDependencies": {
+    "parcel": "^2.13.3",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }, 
+  "browserlist":[
+    "last 5 versions"
+  ]
+}
