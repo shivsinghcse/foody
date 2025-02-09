@@ -1,9 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import Header from './src/Components/Header';
+import RestaurantCard from './src/Components/RestaurantCard';
 // import './index.css';
 
 const App = () => {
+    const [resInfo, setResInfo] = useState([]);
+    const [topBrandsInCity, setTopBrandsInCity] = useState([]);
+
     useEffect(() => {
         fetchData();
     }, []);
@@ -14,12 +18,18 @@ const App = () => {
         );
 
         const json = await data.json();
-
-        console.log(json);
+        setResInfo(json.data);
+        console.log(json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants);
+        const topRestaurants =
+            json.data.cards[1].card.card.gridElements.infoWithStyle.restaurants;
+        setTopBrandsInCity(topRestaurants);
     };
     return (
         <>
             <Header />
+            {topBrandsInCity.map((restaurant) => {
+                return <RestaurantCard resData={restaurant} key={restaurant.info.id}/>;
+            })}
         </>
     );
 };
