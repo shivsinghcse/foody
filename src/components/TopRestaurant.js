@@ -19,7 +19,7 @@ const TopRestaurant = () => {
         const json = await response.json();
         const data = json.data.cards[1].card.card;
 
-        console.log(data);
+        console.log(json.data.cards);
 
         setTitle(data?.header?.title);
         setTopRestaurant(data?.gridElements?.infoWithStyle?.restaurants);

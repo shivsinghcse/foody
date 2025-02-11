@@ -27,7 +27,7 @@ const RestaurantCard = ({ resdata }) => {
                     <div className="image-overlay absolute top-0 w-full h-full"></div>
                 </div>
                 <div className="p-3">
-                    <h2 className="text-lg font-bold">{name}</h2>
+                    <h2 className="text-lg font-bold truncate">{name}</h2>
                     <div className="flex items-center gap-1">
                         <Star className="inline" />
                         <div>

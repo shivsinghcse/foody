@@ -55,7 +55,7 @@ const Header = () => {
                     </div>
                 </div>
             </div>
-            <header className="p-3 shadow-xl">
+            <header className="p-3 shadow-xl sticky top-0 bg-white z-[99999]">
                 <div className="max-w-[1200px] mx-auto  flex items-center">
                     <div className="w-18">
                         <img
@@ -64,7 +64,7 @@ const Header = () => {
                             className="w-full rounded-full border-1"
                         />
                     </div>
-                    <div className="ml-5 text-[#686b78]" onClick={showSideMenu}>
+                    <div className="ml-5 text-[#686b78] z-[999]" onClick={showSideMenu}>
                         <span className="font-bold border-b-2 mx-[5px] hover:text-[#ff5200] hover:cursor-pointer">
                             {' '}
                             Other
