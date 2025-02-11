@@ -1,7 +1,8 @@
 import { BsArrowLeftShort, BsArrowRightShort } from 'react-icons/bs';
 import { useEffect, useState } from 'react';
-import { CDN_URL } from '../../utils/constants';
+import { CDN_URL, RES_API } from '../../utils/constants';
 import RestaurantCard from './RestaurantCard';
+import { Link } from 'react-router';
 
 const TopRestaurant = () => {
     const [title, setTitle] = useState('');
@@ -14,12 +15,12 @@ const TopRestaurant = () => {
 
     const fetchTopRestaurant = async () => {
         const response = await fetch(
-            'https://food-app-cors.vercel.app/api/proxy/swiggy/dapi/restaurants/list/v5?lat=26.8466937&lng=80.94616599999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING'
+            'https://food-app-cors.vercel.app/api/proxy/swiggy/dapi' + RES_API
         );
         const json = await response.json();
         const data = json.data.cards[1].card.card;
 
-        console.log(json.data.cards);
+        console.log(data?.gridElements?.infoWithStyle?.restaurants);
 
         setTitle(data?.header?.title);
         setTopRestaurant(data?.gridElements?.infoWithStyle?.restaurants);
@@ -56,15 +57,21 @@ const TopRestaurant = () => {
                 <div className="flex gap-5 mt-10 overflow-hidden">
                     {topRestaurant.map((restaurant) => {
                         return (
-                            <div
+                            <Link
+                                to={'/restaurant/' + restaurant.info.id}
                                 key={restaurant?.info?.id}
-                                className="shrink-0 grow duration-500"
-                                style={{
-                                    transform: `translateX(${slide * -109}%)`,
-                                }}
                             >
-                                <RestaurantCard resdata={restaurant} />
-                            </div>
+                                <div
+                                    className="shrink-0 grow duration-500"
+                                    style={{
+                                        transform: `translateX(${
+                                            slide * -109
+                                        }%)`,
+                                    }}
+                                >
+                                    <RestaurantCard resdata={restaurant} />
+                                </div>
+                            </Link>
                         );
                     })}
                 </div>

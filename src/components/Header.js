@@ -3,6 +3,7 @@ import { FiUser } from 'react-icons/fi';
 import { LiaShoppingBagSolid } from 'react-icons/lia';
 import { useState } from 'react';
 import { LOGO_URL } from '../../utils/constants';
+import { Link } from 'react-router';
 const Header = () => {
     const [toggle, setToggle] = useState(false);
 
@@ -26,7 +27,7 @@ const Header = () => {
     return (
         <>
             <div
-                className="black-overlay h-full w-full fixed duration-500 z-[9999]"
+                className="black-overlay h-full w-full fixed duration-500 z-55 "
                 style={{
                     opacity: toggle ? 1 : 0,
                     visibility: toggle ? 'visible' : 'hidden',
@@ -43,7 +44,7 @@ const Header = () => {
                     }}
                 >
                     <RxCross2
-                        className="font-extrabold absolute top-7 left-7 text-[24px] cursor-pointer"
+                        className="font-extrabold absolute top-17 left-17 text-[24px] cursor-pointer"
                         onClick={hideSideMenu}
                     />
                     <div className=" w-[70%] mx-auto absolute top-[15%] left-[15%]">
@@ -55,16 +56,21 @@ const Header = () => {
                     </div>
                 </div>
             </div>
-            <header className="p-3 shadow-xl sticky top-0 bg-white z-[999]">
+            <header className="p-3 shadow-xl bg-white sticky top-0 left-0 z-50">
                 <div className="max-w-[1200px] mx-auto  flex items-center">
-                    <div className="w-18">
-                        <img
-                            src={LOGO_URL}
-                            alt="logo"
-                            className="w-full rounded-full border-1"
-                        />
-                    </div>
-                    <div className="ml-5 text-[#686b78] z-[999]" onClick={showSideMenu}>
+                    <Link to="/">
+                        <div className="w-18">
+                            <img
+                                src={LOGO_URL}
+                                alt="logo"
+                                className="w-full rounded-full border-1"
+                            />
+                        </div>
+                    </Link>
+                    <div
+                        className="ml-5 text-[#686b78] z-[999]"
+                        onClick={showSideMenu}
+                    >
                         <span className="font-bold border-b-2 mx-[5px] hover:text-[#ff5200] hover:cursor-pointer">
                             {' '}
                             Other

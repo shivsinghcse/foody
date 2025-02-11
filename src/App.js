@@ -1,17 +1,18 @@
-import Category from './components/Category';
 import Header from './components/Header';
-import OnlineDelivery from './components/OnlineDelivery';
-import TopRestaurant from './components/TopRestaurant';
+import Home from './components/Home';
+import { Routes, Route, Outlet } from 'react-router';
+import RestaurantMenu from './components/RestaurantMenu';
 
 const App = () => {
     return (
         <>
-            <h1 className="">
-                <Header />
-                <Category />
-                <TopRestaurant />
-                <OnlineDelivery />
-            </h1>
+            <Header />
+            <Outlet />
+
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/restaurant/:resId" element={<RestaurantMenu />} />
+            </Routes>
         </>
     );
 };

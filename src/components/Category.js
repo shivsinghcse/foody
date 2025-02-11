@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BsArrowLeftShort, BsArrowRightShort } from 'react-icons/bs';
-import { CDN_URL } from '../../utils/constants';
+import { CDN_URL, RES_API } from '../../utils/constants';
 const Category = () => {
     const [title, setTitle] = useState('');
     const [categoryData, setCategoryData] = useState([]);
@@ -12,12 +12,12 @@ const Category = () => {
 
     const fetchCategory = async () => {
         const response = await fetch(
-            'https://food-app-cors.vercel.app/api/proxy/swiggy/dapi/restaurants/list/v5?lat=26.8466937&lng=80.94616599999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING'
+            'https://food-app-cors.vercel.app/api/proxy/swiggy/dapi' + RES_API
         );
         const json = await response.json();
         const data = json.data.cards[0].card.card;
 
-        // console.log(data);
+        console.log('das', data?.imageGridCards?.info);
 
         setTitle(data?.header?.title);
         setCategoryData(data?.imageGridCards?.info);
@@ -57,7 +57,7 @@ const Category = () => {
                         return (
                             <div
                                 key={category.id}
-                                className="w-[150px] shrink-0 duration-500"
+                                className="w-[150px] shrink-0 duration-500 cursor-pointer"
                                 style={{
                                     transform: `translateX(${slide * -100}%)`,
                                 }}
