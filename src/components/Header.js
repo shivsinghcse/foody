@@ -26,7 +26,7 @@ const Header = () => {
     return (
         <>
             <div
-                className="black-overlay h-full w-full fixed duration-500"
+                className="black-overlay h-full w-full fixed duration-500 z-[9999]"
                 style={{
                     opacity: toggle ? 1 : 0,
                     visibility: toggle ? 'visible' : 'hidden',
@@ -55,7 +55,7 @@ const Header = () => {
                     </div>
                 </div>
             </div>
-            <header className="p-3 shadow-xl sticky top-0 bg-white z-[99999]">
+            <header className="p-3 shadow-xl sticky top-0 bg-white z-[999]">
                 <div className="max-w-[1200px] mx-auto  flex items-center">
                     <div className="w-18">
                         <img
