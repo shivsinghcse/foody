@@ -67,7 +67,7 @@ const Category = () => {
                         );
                     })}
                 </div>
-                <hr className='my-6 border-1 border-[#ccc] '/>
+                <hr className="my-6 border-1 border-[#ccc] " />
             </div>
         </>
     );
