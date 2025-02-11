@@ -5,7 +5,6 @@ const RestaurantCard = ({ resdata }) => {
     // console.log("resdata", resdata);
 
     const {
-        id,
         name,
         areaName,
         avgRatingString,
@@ -13,6 +12,8 @@ const RestaurantCard = ({ resdata }) => {
         cloudinaryImageId,
         sla,
     } = resdata.info;
+
+    const { header, subHeader } = resdata?.info?.aggregatedDiscountInfoV3 || {};
 
     return (
         <>
@@ -24,7 +25,13 @@ const RestaurantCard = ({ resdata }) => {
                         alt=""
                     />
 
-                    <div className="image-overlay absolute top-0 w-full h-full"></div>
+                    <div className="image-overlay absolute top-0 w-full h-full">
+                        {header && (
+                            <p className="text-xl text-white font-bold bottom-0 absolute p-2 tracking-tighter">
+                                {header + ' ' + subHeader}
+                            </p>
+                        )}
+                    </div>
                 </div>
                 <div className="p-3">
                     <h2 className="text-lg font-bold truncate">{name}</h2>
@@ -45,5 +52,23 @@ const RestaurantCard = ({ resdata }) => {
         </>
     );
 };
+
+// export const WithOfferLabelRestaurantCard = (RestaurantCard) => {
+//     return (props) => {
+//         const { header, subHeader } =
+//             resdata?.info?.aggregatedDiscountInfoV3 || {};
+
+//         return (
+//             <div className="relative">
+//                 {header && (
+//                     <p className="text-3xl text-red-500 absolute top-10 border-8">
+//                         {header} {subHeader}
+//                     </p>
+//                 )}
+//                 <RestaurantCard {...props} />
+//             </div>
+//         );
+//     };
+// };
 
 export default RestaurantCard;

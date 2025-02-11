@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import ItemList from './ItemList';
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa6';
 
@@ -6,15 +6,11 @@ const ItemCategory = ({ data, showItems, setShowIndex }) => {
     // console.log('data', data);
     const { title, itemCards } = data.card.card;
     const [showItem, setShowItem] = useState(false);
-    // console.log('itemcard', itemCards);
 
     const handleClick = () => {
         setShowIndex();
         setShowItem(!showItem);
     };
-
-   
-    // console.log(category);
 
     return (
         <>

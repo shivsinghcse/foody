@@ -1,27 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { BsArrowLeftShort, BsArrowRightShort } from 'react-icons/bs';
-import { CDN_URL, RES_API } from '../../utils/constants';
-const Category = () => {
-    const [title, setTitle] = useState('');
-    const [categoryData, setCategoryData] = useState([]);
+import { CDN_URL } from '../../../utils/constants';
+const Category = ({ categoryTitle, categoryData }) => {
     const [slide, setSlide] = useState(0);
-
-    useEffect(() => {
-        fetchCategory();
-    }, []);
-
-    const fetchCategory = async () => {
-        const response = await fetch(
-            'https://food-app-cors.vercel.app/api/proxy/swiggy/dapi' + RES_API
-        );
-        const json = await response.json();
-        const data = json.data.cards[0].card.card;
-
-        console.log('das', data?.imageGridCards?.info);
-
-        setTitle(data?.header?.title);
-        setCategoryData(data?.imageGridCards?.info);
-    };
 
     const handleNext = () => {
         if (slide < 15) {
@@ -38,7 +19,7 @@ const Category = () => {
         <>
             <div className="max-w-[1100] mx-auto">
                 <div className="flex justify-between items-center  my-3">
-                    <div className="text-2xl font-bold">{title}</div>
+                    <div className="text-2xl font-bold">{categoryTitle}</div>
                     <div className="flex gap-2">
                         <button onClick={handlePrevious}>
                             <div className="h-[30px] w-[30px] bg-[#02060c26] rounded-full flex justify-center items-center cursor-pointer">

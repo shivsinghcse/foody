@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import { MENU_API } from '../../utils/constants';
+import { MENU_API, VITE_URL } from '../../utils/constants';
 import ItemCategory from './ItemCategory';
 const RestaurantMenu = () => {
     const { resId } = useParams();
@@ -13,11 +13,7 @@ const RestaurantMenu = () => {
     }, []);
 
     const fetchResData = async () => {
-        const response = await fetch(
-            'https://food-app-cors.vercel.app/api/proxy/swiggy/dapi' +
-                MENU_API +
-                resId
-        );
+        const response = await fetch(VITE_URL + MENU_API + resId);
         const json = await response.json();
         const data = json.data.cards[2].card.card;
 
