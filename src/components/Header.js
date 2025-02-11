@@ -59,7 +59,7 @@ const Header = () => {
             <header className="p-3 shadow-xl bg-white sticky top-0 left-0 z-50">
                 <div className="max-w-[1200px] mx-auto  flex items-center">
                     <Link to="/">
-                        <div className="w-18">
+                        <div className="w-14">
                             <img
                                 src={LOGO_URL}
                                 alt="logo"

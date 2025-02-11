@@ -7,7 +7,7 @@ const TopRestaurant = ({ topRestaurant, topRestaurantChainTitle }) => {
     const [slide, setSlide] = useState(0);
 
     const handleNext = () => {
-        if (slide < 16) {
+        if (topRestaurant.length - 4) {
             setSlide(slide + 1);
         }
     };
@@ -17,7 +17,9 @@ const TopRestaurant = ({ topRestaurant, topRestaurantChainTitle }) => {
         }
     };
 
-    
+    if (topRestaurantChainTitle === '' || topRestaurant.length === 0) {
+        return;
+    }
     return (
         <>
             <div className="max-w-[1100] mx-auto">

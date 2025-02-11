@@ -15,6 +15,9 @@ const Category = ({ categoryTitle, categoryData }) => {
         }
     };
 
+    if (categoryTitle === '' || categoryData.length === 0) {
+        return;
+    }
     return (
         <>
             <div className="max-w-[1100] mx-auto">

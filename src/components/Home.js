@@ -12,6 +12,7 @@ const Home = () => {
         categoryTitle,
         categoryData,
     ] = useRestaurant();
+
     return (
         <>
             <Category
