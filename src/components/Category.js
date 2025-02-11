@@ -38,7 +38,7 @@ const Category = () => {
         <>
             <div className="max-w-[1100] mx-auto">
                 <div className="flex justify-between items-center  my-3">
-                    <div className="text-2xl font-bold pl-5">{title}</div>
+                    <div className="text-2xl font-bold">{title}</div>
                     <div className="flex gap-2">
                         <button onClick={handlePrevious}>
                             <div className="h-[30px] w-[30px] bg-[#02060c26] rounded-full flex justify-center items-center cursor-pointer">
