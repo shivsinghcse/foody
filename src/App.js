@@ -8,7 +8,7 @@ const App = () => {
             <h1 className="">
                 <Header />
                 <Category />
-                {/* <TopRestaurant /> */}
+                <TopRestaurant />
             </h1>
         </>
     );
