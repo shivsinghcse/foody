@@ -17,7 +17,9 @@ const TopRestaurant = ({ topRestaurant, topRestaurantChainTitle }) => {
         }
     };
 
-    if (topRestaurantChainTitle === '' || topRestaurant.length === 0) {
+    console.log(topRestaurant);
+
+    if (topRestaurantChainTitle === '' || topRestaurant === undefined) {
         return;
     }
     return (
@@ -42,7 +44,6 @@ const TopRestaurant = ({ topRestaurant, topRestaurantChainTitle }) => {
                 </div>
                 <div className="flex gap-5 mt-10 overflow-hidden">
                     {topRestaurant.map((restaurant) => {
-                        
                         return (
                             <Link
                                 to={'/restaurant/' + restaurant.info.id}
