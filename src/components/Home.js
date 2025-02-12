@@ -4,14 +4,14 @@ import Category from './Home/Category';
 import useRestaurant from '../../hooks/useRestaurant';
 
 const Home = () => {
-    const [
+    const {
         topRestaurant,
         topRestaurantChainTitle,
         onlineRestaurant,
         onlineRestaurantTitle,
         categoryTitle,
         categoryData,
-    ] = useRestaurant();
+    } = useRestaurant();
 
     return (
         <>

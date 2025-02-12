@@ -4,20 +4,14 @@ import { RES_API, VITE_URL } from '../utils/constants';
 const useRestaurant = () => {
     const [topRestaurant, setTopRestaurant] = useState([]);
     const [topRestaurantChainTitle, setTopRestaurantChainTitle] = useState('');
+
     const [onlineRestaurant, setOnlineRestaurant] = useState([]);
     const [onlineRestaurantTitle, setOnlineRestaurantTitle] = useState('');
 
     const [categoryTitle, setCategoryTitle] = useState('');
     const [categoryData, setCategoryData] = useState([]);
 
-    const data = [
-        topRestaurant,
-        topRestaurantChainTitle,
-        onlineRestaurant,
-        onlineRestaurantTitle,
-        categoryTitle,
-        categoryData,
-    ];
+ 
     useEffect(() => {
         fetchTopRestaurant();
     }, []);
@@ -25,9 +19,8 @@ const useRestaurant = () => {
     const fetchTopRestaurant = async () => {
         const response = await fetch(VITE_URL + RES_API);
         const json = await response.json();
-        const data = json.data.cards;
 
-        console.log('main', data);
+        // console.log('main', json.data.cards);
 
         const imageCarousal = json?.data?.cards?.find((a) =>
             a?.card?.card?.id?.includes('mind')
@@ -49,19 +42,28 @@ const useRestaurant = () => {
             a?.card?.card?.id?.includes('top_brands')
         )?.card?.card?.gridElements?.infoWithStyle?.restaurants;
 
-        // console.log("main", data[0]?.card?.card?.gridElements?.infoWithStyle?.info);
+        const topChainTitle = json?.data?.cards?.find((a) =>
+            a?.card?.card?.id?.includes('top_brands')
+        )?.card?.card?.header?.title;
 
         setCategoryTitle(imageCarousalTitle);
         setCategoryData(imageCarousal);
 
-        setTopRestaurantChainTitle(data[1]?.card?.card?.header?.title);
+        setTopRestaurantChainTitle(topChainTitle);
         setTopRestaurant(topChain);
 
         setOnlineRestaurantTitle(restaurantTitle);
         setOnlineRestaurant(restaurant);
     };
 
-    return data;
+    return {
+        categoryData,
+        topRestaurant,
+        categoryTitle,
+        onlineRestaurant,
+        topRestaurantChainTitle,
+        onlineRestaurantTitle,
+    };
 };
 
 export default useRestaurant;
