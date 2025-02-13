@@ -29,8 +29,11 @@ const ItemList = ({ items }) => {
                                 )}
                             </p>
 
-                            <p className="text-lg font-bold mt-2 mb-1 leading-6">
-                                {item.card.info.name}{' '}
+                            <p
+                                className="text-lg font-bold mt-2 mb-1 leading-6"
+                            
+                            >
+                                {item.card.info.name}
                             </p>
                             <p className="text-md font-bold">
                                 &#8377;&nbsp;
@@ -65,7 +68,12 @@ const ItemList = ({ items }) => {
                                 className="w-48 h-44 object-cover cursor-pointer rounded-xl shadow-xl border-[1px]"
                                 src={RES_MENU_IMG + item.card.info.imageId}
                             />
-                            <button className="border-[1px] border-gray-300 bg-white w-32 py-2 rounded-lg text-md font-extrabold text-green-600 mx-auto absolute -bottom-5 left-8 z-1 shadow-md">
+                            <button
+                                className="border-[1px] border-gray-300 bg-white px-6 py-2 rounded-lg text-md font-extrabold text-green-600 mx-auto absolute -bottom-5 left-8 z-1 shadow-md cursor-pointer"
+                                onClick={() => {
+                                    alert();
+                                }}
+                            >
                                 ADD
                             </button>
                         </div>

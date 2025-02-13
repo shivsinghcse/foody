@@ -25,7 +25,7 @@ const RestaurantMenu = () => {
     return (
         <>
             {category && category?.length && (
-                <div className=" flex flex-col gap-y-5 w-[60%] mx-auto p-5 my-5">
+                <div className=" flex flex-col gap-y-5 w-[90%] md:w-[75%] lg:w-[65%] mx-auto p-5 my-5">
                     <h1 className="font-sans  text-2xl font-extrabold">
                         {name}
                     </h1>

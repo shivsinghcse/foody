@@ -26,6 +26,7 @@ const Header = () => {
     };
     return (
         <>
+            {/* location drawer */}
             <div
                 className="black-overlay h-full w-full fixed duration-500 z-55 "
                 style={{
@@ -57,9 +58,9 @@ const Header = () => {
                 </div>
             </div>
             <header className="p-3 shadow-xl bg-white sticky top-0 left-0 z-50">
-                <div className="max-w-[1200px] mx-auto  flex items-center">
+                <div className="w-full md:w-[85%] xl:w-[70%] mx-auto  flex items-center overflow-hidden">
                     <Link to="/">
-                        <div className="w-14">
+                        <div className="w-10 md:w-14">
                             <img
                                 src={LOGO_URL}
                                 alt="logo"
@@ -68,24 +69,24 @@ const Header = () => {
                         </div>
                     </Link>
                     <div
-                        className="ml-5 text-[#686b78] z-[999]"
+                        className="ml-2 md:ml-5 text-[#686b78] z-[999] text-[8px] md:text-[16px]"
                         onClick={showSideMenu}
                     >
-                        <span className="font-bold border-b-2 mx-[5px] hover:text-[#ff5200] hover:cursor-pointer">
+                        <span className="font-semibold border-b-1  mx-[3px] md:font-bold md:border-b-2 md:mx-[5px] hover:text-[#ff5200] hover:cursor-pointer">
                             {' '}
                             Other
                         </span>
                         <span className="cursor-pointer">
                             Lucknow, Uttar Pradesh, India
                         </span>
-                        <RxCaretDown className="inline text-[#ff5200] text-[25px] font-extrabold hover:cursor-pointer" />
+                        <RxCaretDown className="inline text-[#ff5200] text-[1rem] md:text-[1.7rem] font-extrabold hover:cursor-pointer" />
                     </div>
-                    <nav className="flex  list-none gap-5 ml-auto  text-[18px] font-semibold mr-5 text-[#3d4152]">
+                    <nav className="flex  list-none gap-2 md:gap-5 ml-auto  text-[10px] md:text-[18px] font-semibold mr-2 md:mr-5 text-[#3d4152]">
                         {links.map((link, index) => {
                             return (
                                 <li
                                     key={index}
-                                    className="hover:text-[#ff5200] hover:cursor-pointer flex items-center gap-2"
+                                    className="hover:text-[#ff5200] hover:cursor-pointer flex items-center gap-1 md:gap-2"
                                 >
                                     {link.icon}
                                     {link.name}
