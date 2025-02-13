@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { BsArrowLeftShort, BsArrowRightShort } from 'react-icons/bs';
-import { CDN_URL } from '../../../utils/constants';
+import { IMG_CAROUSEL } from '../../../utils/constants';
 const Category = ({ categoryTitle, categoryData }) => {
     const [slide, setSlide] = useState(0);
 
@@ -50,7 +50,7 @@ const Category = ({ categoryTitle, categoryData }) => {
                                         }}
                                     >
                                         <img
-                                            src={`${CDN_URL}${category.imageId}`}
+                                            src={`${IMG_CAROUSEL}${category.imageId}`}
                                         />
                                     </div>
                                 );

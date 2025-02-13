@@ -1,4 +1,4 @@
-import { CDN_URL } from '../../utils/constants';
+import { RES_IMG } from '../../utils/constants';
 import { BsDot } from 'react-icons/bs';
 import Star from './Star';
 const RestaurantCard = ({ resdata }) => {
@@ -20,7 +20,7 @@ const RestaurantCard = ({ resdata }) => {
             <div className="w-[273px] hover:scale-95 duration-300">
                 <div className=" h-[182px] overflow-hidden rounded-[1rem] relative">
                     <img
-                        src={CDN_URL + cloudinaryImageId}
+                        src={RES_IMG + cloudinaryImageId}
                         className="h-full w-full object-cover rounded-[1rem] "
                         alt=""
                     />

@@ -1,4 +1,4 @@
-import { CDN_URL } from '../../utils/constants';
+import { RES_MENU_IMG } from '../../utils/constants';
 const ItemList = ({ items }) => {
     // console.log('items', items);
 
@@ -63,7 +63,7 @@ const ItemList = ({ items }) => {
                         <div className="flex flex-col justify-center my-8 relative">
                             <img
                                 className="w-48 h-44 object-cover cursor-pointer rounded-xl shadow-xl border-[1px]"
-                                src={CDN_URL + item.card.info.imageId}
+                                src={RES_MENU_IMG + item.card.info.imageId}
                             />
                             <button className="border-[1px] border-gray-300 bg-white w-32 py-2 rounded-lg text-md font-extrabold text-green-600 mx-auto absolute -bottom-5 left-8 z-1 shadow-md">
                                 ADD
