@@ -9,10 +9,10 @@ const App = () => {
             <Header />
             <Outlet />
 
-             {/* <Routes>
+             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/restaurant/:resId" element={<RestaurantMenu />} />
-            </Routes>  */}
+            </Routes>  
         </>
     );
 };
