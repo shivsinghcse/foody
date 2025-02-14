@@ -18,34 +18,34 @@ const Category = ({ categoryTitle, categoryData }) => {
     return (
         <>
             {categoryData && categoryData?.length !== 0 && (
-                <div className="max-w-[1100] mx-auto">
-                    <div className="flex justify-between items-center  my-3">
-                        <div className="text-2xl font-bold">
+                <div className="w-[95%] md:w-[80%] mx-auto">
+                    <div className="flex justify-between items-center  my-2 md:my-5">
+                        <div className="text-md md:text-2xl font-bold">
                             {categoryTitle}
                         </div>
-                        <div className="flex gap-2">
+                        <div className="flex gap-1 md:gap-2">
                             <button onClick={handlePrevious}>
-                                <div className="h-[30px] w-[30px] bg-[#02060c26] rounded-full flex justify-center items-center cursor-pointer">
+                                <div className="h-[20px] w-[20px] md:h-[30px] md:w-[30px] bg-[#02060c26] rounded-full flex justify-center items-center cursor-pointer">
                                     <BsArrowLeftShort fontSize={'24px'} />
                                 </div>
                             </button>
                             <button onClick={handleNext}>
-                                <div className="h-[30px] w-[30px] bg-[#02060c26] rounded-full flex justify-center items-center cursor-pointer">
+                                <div className="h-[20px] w-[20px] md:h-[30px] md:w-[30px] bg-[#02060c26] rounded-full flex justify-center items-center cursor-pointer">
                                     <BsArrowRightShort fontSize={'24px'} />
                                 </div>
                             </button>
                         </div>
                     </div>
-                    <div className="flex  overflow-hidden  gap-x-4">
+                    <div className="flex  overflow-hidden  gap-x-1 md:gap-x-4">
                         {categoryData &&
                             categoryData.map((category) => {
                                 return (
                                     <div
                                         key={category.id}
-                                        className="w-[150px] shrink-0 duration-500 cursor-pointer"
+                                        className="w-[50px] md:w-[68px] lg:w-[110px] xl:w-[180px] shrink-0 duration-500 cursor-pointer"
                                         style={{
                                             transform: `translateX(${
-                                                slide * -105
+                                                slide * -109
                                             }%)`,
                                         }}
                                     >
@@ -56,7 +56,7 @@ const Category = ({ categoryTitle, categoryData }) => {
                                 );
                             })}
                     </div>
-                    <hr className="my-6 border-1 border-[#ccc] " />
+                    <hr className="my-3 md:my-6 border-1 border-[#ccc] " />
                 </div>
             )}
         </>

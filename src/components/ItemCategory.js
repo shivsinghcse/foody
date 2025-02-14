@@ -7,6 +7,9 @@ const ItemCategory = ({ data, showItems, setShowIndex }) => {
     const { title, itemCards } = data.card.card;
     const [showItem, setShowItem] = useState(false);
 
+    // console.log(data);
+    
+
     const handleClick = () => {
         setShowIndex();
         setShowItem(!showItem);

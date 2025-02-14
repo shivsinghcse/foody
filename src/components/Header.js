@@ -1,22 +1,12 @@
 import { RxCaretDown, RxCross2 } from 'react-icons/rx';
 import { FiUser } from 'react-icons/fi';
-import { LiaShoppingBagSolid } from 'react-icons/lia';
+import { SlBag } from 'react-icons/sl';
 import { useState } from 'react';
 import { LOGO_URL } from '../../utils/constants';
 import { Link } from 'react-router';
+import { useSelector } from 'react-redux';
 const Header = () => {
     const [toggle, setToggle] = useState(false);
-
-    const links = [
-        {
-            icon: <FiUser />,
-            name: ' Sign In',
-        },
-        {
-            icon: <LiaShoppingBagSolid />,
-            name: ' Cart',
-        },
-    ];
 
     const showSideMenu = () => {
         setToggle(true);
@@ -24,6 +14,9 @@ const Header = () => {
     const hideSideMenu = () => {
         setToggle(false);
     };
+
+    const cartItems = useSelector((store) => store.cart.items);
+
     return (
         <>
             {/* location drawer */}
@@ -82,18 +75,32 @@ const Header = () => {
                         </span>
                         <RxCaretDown className="inline text-[#ff5200] text-[1rem] md:text-[1.7rem] font-extrabold hover:cursor-pointer" />
                     </div>
-                    <nav className="flex  list-none gap-2 md:gap-5 ml-auto  text-[10px] md:text-[18px] font-semibold mr-2 md:mr-5 text-[#3d4152]">
-                        {links.map((link, index) => {
-                            return (
-                                <li
-                                    key={index}
-                                    className="hover:text-[#ff5200] hover:cursor-pointer flex items-center gap-1 md:gap-2"
+                    <nav className="f ml-auto  text-[10px] md:text-[18px] font-semibold mr-2 md:mr-5 text-[#3d4152]">
+                        <ul className="flex  list-none gap-2 md:gap-5">
+                            <li className="hover:text-[#ff5200] hover:cursor-pointer ">
+                                <Link
+                                    to=""
+                                    className="flex items-center gap-1 md:gap-2"
                                 >
-                                    {link.icon}
-                                    {link.name}
-                                </li>
-                            );
-                        })}
+                                    <FiUser />
+                                    Sign In
+                                </Link>
+                            </li>
+                            <li className="hover:text-[#ff5200] hover:cursor-pointer ">
+                                <Link
+                                    to="/cart"
+                                    className="flex items-center gap-1 md:gap-2"
+                                >
+                                    <SlBag />
+                                    {cartItems.length > 0 ? (
+                                        <sup>{cartItems.length} </sup>
+                                    ) : (
+                                        <></>
+                                    )}
+                                    Cart
+                                </Link>
+                            </li>
+                        </ul>
                     </nav>
                 </div>
             </header>

@@ -11,6 +11,9 @@ export const RES_IMG =
     export const RES_MENU_IMG =
     'https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_300,h_300,c_fit/';
 
+    export const RES_CART_IMG =
+    "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_100,h_100,c_fill/";
+
 export const RES_API =
     '/restaurants/list/v5?lat=26.8466937&lng=80.94616599999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING';
 

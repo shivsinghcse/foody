@@ -8,37 +8,37 @@ const TopRestaurant = ({ topRestaurant, topRestaurantChainTitle }) => {
 
     const handleNext = () => {
         if (slide < topRestaurant?.length - 4) {
-            setSlide(slide + 2);
+            setSlide(slide + 1);
         }
     };
     const handlePrevious = () => {
         if (slide > 0) {
-            setSlide(slide - 2);
+            setSlide(slide - 1);
         }
     };
 
     return (
         <>
             {topRestaurant && topRestaurant?.length !== 0 && (
-                <div className="max-w-[1100] mx-auto">
-                    <div className="flex justify-between items-center  my-3">
-                        <div className="text-2xl font-bold">
+                <div className="w-[95%] md:w-[80%] mx-auto">
+                    <div className="flex justify-between items-center  my-1 md:my-3">
+                        <div className="text-md md:text-2xl font-bold">
                             {topRestaurantChainTitle}
                         </div>
-                        <div className="flex gap-2">
+                        <div className="flex gap-1 md:gap-2">
                             <button onClick={handlePrevious}>
-                                <div className="h-[30px] w-[30px] bg-[#02060c26] rounded-full flex justify-center items-center cursor-pointer">
+                                <div className="h-[20px] w-[20px] md:h-[30px] md:w-[30px] bg-[#02060c26] rounded-full flex justify-center items-center cursor-pointer">
                                     <BsArrowLeftShort fontSize={'24px'} />
                                 </div>
                             </button>
                             <button onClick={handleNext}>
-                                <div className="h-[30px] w-[30px] bg-[#02060c26] rounded-full flex justify-center items-center cursor-pointer">
+                                <div className="h-[20px] w-[20px] md:h-[30px] md:w-[30px] bg-[#02060c26] rounded-full flex justify-center items-center cursor-pointer">
                                     <BsArrowRightShort fontSize={'24px'} />
                                 </div>
                             </button>
                         </div>
                     </div>
-                    <div className="flex gap-5 mt-10 overflow-hidden">
+                    <div className="flex gap-5 mt-5 md:mt-10 overflow-hidden">
                         {topRestaurant &&
                             topRestaurant.map((restaurant) => {
                                 return (
@@ -50,7 +50,7 @@ const TopRestaurant = ({ topRestaurant, topRestaurantChainTitle }) => {
                                             className="shrink-0 grow duration-500"
                                             style={{
                                                 transform: `translateX(${
-                                                    slide * -109
+                                                    slide * -100
                                                 }%)`,
                                             }}
                                         >
@@ -63,7 +63,7 @@ const TopRestaurant = ({ topRestaurant, topRestaurantChainTitle }) => {
                                 );
                             })}
                     </div>
-                    <hr className="my-6 border-1 border-[#ccc] " />
+                    <hr className="my-3 md:my-6 border-1 border-[#ccc] " />
                 </div>
             )}
         </>

@@ -1,6 +1,15 @@
+import { useDispatch } from 'react-redux';
 import { RES_MENU_IMG } from '../../utils/constants';
+import { addItem } from '../../utils/cartSlice';
+
 const ItemList = ({ items }) => {
     // console.log('items', items);
+
+    const dispatch = useDispatch();
+
+    const handleAddItem = (item) => {
+        dispatch(addItem(item));
+    };
 
     return (
         <>
@@ -29,10 +38,7 @@ const ItemList = ({ items }) => {
                                 )}
                             </p>
 
-                            <p
-                                className="text-lg font-bold mt-2 mb-1 leading-6"
-                            
-                            >
+                            <p className="text-lg font-bold mt-2 mb-1 leading-6">
                                 {item.card.info.name}
                             </p>
                             <p className="text-md font-bold">
@@ -63,15 +69,15 @@ const ItemList = ({ items }) => {
                             </p>
                         </div>
 
-                        <div className="flex flex-col justify-center my-8 relative">
+                        <div className="flex items-end justify-center  relative my-8">
                             <img
                                 className="w-48 h-44 object-cover cursor-pointer rounded-xl shadow-xl border-[1px]"
                                 src={RES_MENU_IMG + item.card.info.imageId}
                             />
                             <button
-                                className="border-[1px] border-gray-300 bg-white px-6 py-2 rounded-lg text-md font-extrabold text-green-600 mx-auto absolute -bottom-5 left-8 z-1 shadow-md cursor-pointer"
+                                className="border-[1px] border-gray-300 bg-white px-6 py-2 rounded-lg text-md font-extrabold text-green-600 mx-auto absolute -bottom-5 z-1 shadow-md cursor-pointer"
                                 onClick={() => {
-                                    alert();
+                                    handleAddItem(item);
                                 }}
                             >
                                 ADD
@@ -80,6 +86,8 @@ const ItemList = ({ items }) => {
                     </div>
                 );
             })}
+
+
         </>
     );
 };

@@ -2,6 +2,7 @@ import Header from './components/Header';
 import Home from './components/Home';
 import { Routes, Route, Outlet } from 'react-router';
 import RestaurantMenu from './components/RestaurantMenu';
+import Cart from './components/Cart';
 
 const App = () => {
     return (
@@ -9,10 +10,11 @@ const App = () => {
             <Header />
             <Outlet />
 
-             <Routes>
+            <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/restaurant/:resId" element={<RestaurantMenu />} />
-            </Routes>  
+                <Route path="/cart" element={<Cart />} />
+            </Routes>
         </>
     );
 };
