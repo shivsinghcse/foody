@@ -17,7 +17,7 @@ const RestaurantCard = ({ resdata }) => {
 
     return (
         <>
-            <div className=" w-[250px] md:w-[273px] hover:scale-95 duration-300">
+            <div className="w-[273px] hover:scale-95 duration-300">
                 <div className=" h-[182px] overflow-hidden rounded-[1rem] relative">
                     <img
                         src={RES_IMG + cloudinaryImageId}

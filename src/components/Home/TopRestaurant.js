@@ -20,7 +20,7 @@ const TopRestaurant = ({ topRestaurant, topRestaurantChainTitle }) => {
     return (
         <>
             {topRestaurant && topRestaurant?.length !== 0 && (
-                <div className="w-[95%] md:w-[80%] mx-auto">
+                <div className="w-[95%] md:w-[75%] mx-auto">
                     <div className="flex justify-between items-center  my-1 md:my-3">
                         <div className="text-md md:text-2xl font-bold">
                             {topRestaurantChainTitle}

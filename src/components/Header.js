@@ -1,12 +1,13 @@
 import { RxCaretDown, RxCross2 } from 'react-icons/rx';
 import { FiUser } from 'react-icons/fi';
 import { SlBag } from 'react-icons/sl';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { LOGO_URL } from '../../utils/constants';
 import { Link } from 'react-router';
 import { useSelector } from 'react-redux';
 const Header = () => {
     const [toggle, setToggle] = useState(false);
+    const [location, setLocation] = useState('');
 
     const showSideMenu = () => {
         setToggle(true);
@@ -17,6 +18,12 @@ const Header = () => {
 
     const cartItems = useSelector((store) => store.cart.items);
 
+    const handelInput = () => {
+        const fetchlocation = async () => {
+            const data = await fetch();
+        };
+    };
+
     return (
         <>
             {/* location drawer */}
@@ -26,7 +33,6 @@ const Header = () => {
                     opacity: toggle ? 1 : 0,
                     visibility: toggle ? 'visible' : 'hidden',
                 }}
-                onClick={hideSideMenu}
             >
                 <div
                     className="bg-white w-full md:w-[50vw] lg:w-[35vw] h-full absolute duration-[400ms]"
@@ -42,17 +48,23 @@ const Header = () => {
                         onClick={hideSideMenu}
                     />
                     <div className=" w-[70%]  mx-auto absolute top-[15%] left-[15%]">
-                        <input
-                            type="text"
-                            placeholder="Search for area, street name.."
-                            className="w-full border-1 p-2"
-                        />
+                        <form onSubmit={handelInput}>
+                            <input
+                                type="text"
+                                placeholder="Search for area, street name.."
+                                className="w-full border-1 p-2"
+                                value={location}
+                                onChange={(e) => {
+                                    setLocation(e.target.value);
+                                }}
+                            />
+                        </form>
                     </div>
                 </div>
             </div>
             {/* header  */}
             <header className="p-3 shadow-xl bg-white sticky top-0 left-0 z-50">
-                <div className="w-full md:w-[85%] xl:w-[70%] mx-auto  flex items-center overflow-hidden">
+                <div className="w-full md:w-[85%] xl:w-[80%] mx-auto  flex items-center overflow-hidden">
                     <Link to="/">
                         <div className="w-10 md:w-14">
                             <img

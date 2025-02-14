@@ -4,13 +4,14 @@ import { Link } from 'react-router';
 const OnlineDelivery = ({ onlineRestaurant, onlineRestaurantTitle }) => {
     return (
         <>
-            <div className="w-[95%] md:w-[80%] mx-auto  my-2 md:my-7">
+            <div className="w-[95%] md:w-[75%] mx-auto  my-2 md:my-7">
                 <div className="text-md md:text-3xl font-bold text-center mb-5 md:mb-10">
                     {onlineRestaurantTitle}
                 </div>
 
-                <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2
-                gap-10 sm:grid-cols-1 place-items-center ">
+                <div
+                    className="flex flex-wrap justify-center gap-5"
+                >
                     {onlineRestaurant.map((restaurant) => {
                         return (
                             <Link

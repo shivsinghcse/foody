@@ -15,18 +15,20 @@ const Home = () => {
 
     return (
         <>
-            <Category
-                categoryTitle={categoryTitle}
-                categoryData={categoryData}
-            />
-            <TopRestaurant
-                topRestaurant={topRestaurant}
-                topRestaurantChainTitle={topRestaurantChainTitle}
-            />
-            <OnlineDelivery
-                onlineRestaurantTitle={onlineRestaurantTitle}
-                onlineRestaurant={onlineRestaurant}
-            />
+            
+                <Category
+                    categoryTitle={categoryTitle}
+                    categoryData={categoryData}
+                />
+                <TopRestaurant
+                    topRestaurant={topRestaurant}
+                    topRestaurantChainTitle={topRestaurantChainTitle}
+                />
+                <OnlineDelivery
+                    onlineRestaurantTitle={onlineRestaurantTitle}
+                    onlineRestaurant={onlineRestaurant}
+                />
+            
         </>
     );
 };
