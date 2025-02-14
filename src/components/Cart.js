@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import CartItemList from './cartItemList';
+import CartItemList from './CartItemList';
 
 const Cart = () => {
     const cartItems = useSelector((store) => store.cart.items);
@@ -10,7 +10,7 @@ const Cart = () => {
                     Cart
                 </div>
                 <div className="w-[90%] md:w-[70%] mx-auto">
-                  <CartItemList items={cartItems}/>
+                    <CartItemList items={cartItems} />
                 </div>
             </div>
         </>
