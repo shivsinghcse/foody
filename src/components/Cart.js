@@ -21,9 +21,12 @@ const Cart = () => {
 
     const buyNow = async (price) => {
         try {
-            const { data } = await axios.post('http://localhost:8080/order', {
-                amount: price,
-            });
+            const { data } = await axios.post(
+                'https://payment-server-roan.vercel.app/order',
+                {
+                    amount: price,
+                }
+            );
             // console.log(data);
             const options = {
                 key: 'rzp_test_kGBtJmWd9jOHTh',
