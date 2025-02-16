@@ -17,6 +17,8 @@ const Header = () => {
     };
 
     const cartItems = useSelector((store) => store.cart.items);
+    // console.log(cartItems);
+    
 
     const handelInput = () => {
         const fetchlocation = async () => {
