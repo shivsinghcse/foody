@@ -31,3 +31,7 @@ export const ADDRESS_API =
 
 // @type: 'type.googleapis.com/swiggy.presentation.food.v2.ItemCategory'
 // https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=26.8466937&lng=80.94616599999999&restaurantId=84849&catalog_qa=undefined&submitAction=ENTER
+
+// https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/2xempty_cart_yfxml0
+
+
