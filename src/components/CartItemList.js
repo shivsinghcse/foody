@@ -13,11 +13,11 @@ const CartItemList = ({ items }) => {
                                     src={RES_CART_IMG + item.card.info.imageId}
                                 />
                             </div>
-                            <div className="flex gap-1 md:gap-2 ">
+                            <div className="flex flex-col  ">
                                 <p>
                                     {item.card.info.itemAttribute
                                         .vegClassifier === 'VEG' ? (
-                                        <span className="border-1 md:border-2 border-green-500 p-[1px] md:pb-[0.7px] rounded text-[5px] md:text-xs">
+                                        <span className="border-1 md:border-2 border-green-500 p-[1px] md:pb-[0.7px] rounded text-[5px]">
                                             🟢
                                         </span>
                                     ) : (
@@ -29,6 +29,7 @@ const CartItemList = ({ items }) => {
                                 <p className="text-[14px] md:text-lg font-semibold md:font-bold mt-2 mb-1 leading-5  w-[70%]">
                                     {item.card.info.name}
                                 </p>
+                                <p>₹{item.card.info.price / 100}</p>
                             </div>
                         </div>
                         <div className="flex items-center ">

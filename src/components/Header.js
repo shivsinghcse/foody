@@ -1,10 +1,10 @@
 import { RxCaretDown, RxCross2 } from 'react-icons/rx';
 import { FiUser } from 'react-icons/fi';
-import { SlBag } from 'react-icons/sl';
 import { useEffect, useState } from 'react';
 import { LOGO_URL } from '../../utils/constants';
 import { Link } from 'react-router';
 import { useSelector } from 'react-redux';
+import ShopingBag from './ShopingBag';
 const Header = () => {
     const [toggle, setToggle] = useState(false);
     const [location, setLocation] = useState('');
@@ -18,7 +18,6 @@ const Header = () => {
 
     const cartItems = useSelector((store) => store.cart.items);
     // console.log(cartItems);
-    
 
     const handelInput = () => {
         const fetchlocation = async () => {
@@ -100,20 +99,30 @@ const Header = () => {
                                     Sign In
                                 </Link>
                             </li>
-                            <li className="hover:text-[#ff5200] hover:cursor-pointer ">
+                            
                                 <Link
                                     to="/cart"
-                                    className="flex items-center gap-1 md:gap-2"
+                                    className="flex items-center gap-1 md:gap-2 hover:text-[#ff5200] hover:cursor-pointer"
                                 >
-                                    <SlBag />
+                                 
                                     {cartItems.length > 0 ? (
-                                        <sup>{cartItems.length} </sup>
+                                        <div className="relative flex justify-center items-center">
+                                            <ShopingBag className="stroke-[#1ba672] fill-[#1ba672]" />
+                                            <span className="absolute text-[12px] text-white">
+                                                {cartItems.length}
+                                            </span>
+                                        </div>
                                     ) : (
-                                        <></>
+                                        <div className="relative flex justify-center items-center ">
+                                            <ShopingBag className="stroke-[#282c3f] fill-white stroke-2 hover:stroke-[#FF5200] " />
+                                            <span className="absolute text-[12px] text-black hover:text-[#ff5200]">
+                                                {cartItems.length}
+                                            </span>
+                                        </div>
                                     )}
                                     Cart
                                 </Link>
-                            </li>
+                           
                         </ul>
                     </nav>
                 </div>

@@ -6,6 +6,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useRazorpay, RazorpayOrderOptions } from 'react-razorpay';
 import { LOGO_URL } from '../../utils/constants';
+import EmptyCart from './EmptyCart';
 
 const Cart = () => {
     const { error, isLoading, Razorpay } = useRazorpay();
@@ -50,35 +51,39 @@ const Cart = () => {
     };
     return (
         <>
-            <div className="p-1 m-1">
-                <div className="text-2xl font-bold underline text-center">
-                    Cart
+            {cartItems.length > 0 ? (
+                <div className="p-1 m-1">
+                    <div className="text-2xl font-bold underline text-center">
+                        Cart
+                    </div>
+                    <div className="w-[100%]  my-5 md:w-[70%]  mx-auto">
+                        <CartItemList items={cartItems} />
+                    </div>
+                    <div className="text-white text-lg font-semibold bg-green-500 flex justify-between p-2 md:w-[75%] mx-auto md:my-10">
+                        <p>Total Price :</p>
+                        <p className="flex items-center">
+                            <BsCurrencyRupee className="inline" />
+                            399
+                        </p>
+                    </div>
+                    <div className="flex justify-center">
+                        <button
+                            className="border-1 py-2 px-4 rounded-lg font-semibold m-2 bg-green-500 text-white hover:cursor-pointer"
+                            onClick={() => buyNow(399)}
+                        >
+                            Place Order
+                        </button>
+                        <button
+                            className="border-1 py-2 px-4 rounded-lg font-semibold m-2 bg-[#ff5200] text-white hover:cursor-pointer"
+                            onClick={handelClearItem}
+                        >
+                            Clear Cart
+                        </button>
+                    </div>
                 </div>
-                <div className="w-[100%]  my-5 md:w-[70%]  mx-auto">
-                    <CartItemList items={cartItems} />
-                </div>
-                <div className="text-white text-lg font-semibold bg-green-500 flex justify-between p-2 md:w-[75%] mx-auto md:my-10">
-                    <p>Total Price :</p>
-                    <p className="flex items-center">
-                        <BsCurrencyRupee className="inline" />
-                        399
-                    </p>
-                </div>
-                <div className="flex justify-center">
-                    <button
-                        className="border-1 py-2 p-2 rounded-lg font-semibold m-2 bg-green-500 text-white cursor-pointer"
-                        onClick={() => buyNow(399)}
-                    >
-                        Place Order
-                    </button>
-                    <button
-                        className="border-1 py-2 p-2 rounded-lg font-semibold m-2 bg-red-500 text-white"
-                        onClick={handelClearItem}
-                    >
-                        Clear Cart
-                    </button>
-                </div>
-            </div>
+            ) : (
+                <EmptyCart />
+            )}
         </>
     );
 };
