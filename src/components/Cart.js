@@ -23,7 +23,7 @@ const Cart = () => {
     const buyNow = async (price) => {
         try {
             const { data } = await axios.post(
-                'https://payment-server-roan.vercel.app/order',
+                'https://payment-server-tau.vercel.app/order',
                 {
                     amount: price,
                 }
