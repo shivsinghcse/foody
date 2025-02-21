@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { RES_MENU_IMG } from '../../utils/constants';
 import { addItem } from '../../utils/cartSlice';
+import toast from 'react-hot-toast';
 
 const ItemList = ({ items }) => {
     // console.log('items', items);
@@ -9,6 +10,7 @@ const ItemList = ({ items }) => {
 
     const handleAddItem = (item) => {
         dispatch(addItem(item));
+        toast.success('Added to the cart');
     };
 
     return (
@@ -86,8 +88,6 @@ const ItemList = ({ items }) => {
                     </div>
                 );
             })}
-
-
         </>
     );
 };

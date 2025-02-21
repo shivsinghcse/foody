@@ -1,19 +1,62 @@
 import { RxCaretDown, RxCross2 } from 'react-icons/rx';
 import { FiUser } from 'react-icons/fi';
 import { useEffect, useState } from 'react';
-import { LOGO_URL } from '../../utils/constants';
+import { LOGIN_IMG, LOGO_URL } from '../../utils/constants';
 import { Link } from 'react-router';
 import { useSelector } from 'react-redux';
 import ShopingBag from './ShopingBag';
+import { RxCross2 } from 'react-icons/rx';
+import firebaseAppConfig from '../../utils/firebaseConfig';
+import {
+    getAuth,
+    GoogleAuthProvider,
+    signInWithPopup,
+    onAuthStateChanged,
+    signOut,
+} from 'firebase/auth';
+
+const auth = getAuth(firebaseAppConfig);
+const googleProvider = new GoogleAuthProvider();
+
 const Header = () => {
     const [toggle, setToggle] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     const [location, setLocation] = useState('');
+    const [isLoggedIn, setIsLoggedIn] = useState(null);
+
+    useEffect(() => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                console.log('loged in');
+                setIsOpen(false);
+                setIsLoggedIn(user);
+            } else {
+                console.log('not loged in');
+                setIsLoggedIn(false);
+                setIsOpen(false);
+            }
+        });
+    }, []);
 
     const showSideMenu = () => {
         setToggle(true);
     };
     const hideSideMenu = () => {
         setToggle(false);
+    };
+    const showSignMenu = () => {
+        setIsOpen(true);
+    };
+    const hideSignMenu = () => {
+        setIsOpen(false);
+    };
+
+    const signInWithGoogle = async () => {
+        try {
+            await signInWithPopup(auth, googleProvider);
+        } catch (err) {
+            console.log(err);
+        }
     };
 
     const cartItems = useSelector((store) => store.cart.items);
@@ -36,7 +79,7 @@ const Header = () => {
                 }}
             >
                 <div
-                    className="bg-white w-full md:w-[50vw] lg:w-[35vw] h-full absolute duration-[400ms]"
+                    className="bg-white w-full md:w-[50vw] lg:w-[35vw] h-full absolute duration-[400ms] "
                     style={{
                         left: toggle ? '0%' : '-100%',
                     }}
@@ -60,6 +103,89 @@ const Header = () => {
                                 }}
                             />
                         </form>
+                    </div>
+                </div>
+            </div>
+            {/* login drawer */}
+            <div
+                className="h-full w-full black-overlay fixed z-55 flex  duration-600 overflow-hidden"
+                style={{
+                    opacity: isOpen ? 1 : 0,
+                    visibility: isOpen ? 'visible' : 'hidden',
+                }}
+            >
+                <div
+                    className="h-full w-full md:w-4/12 bg-white absolute duration-600"
+                    style={{
+                        right: isOpen ? '0%' : '-100%',
+                    }}
+                    onClick={(e) => {
+                        e.stopPropagation();
+                    }}
+                >
+                    <div className="w-9/12 mx-auto  flex flex-col py-8 gap-4">
+                        <button className=" w-8 h-8 border-2 rounded-full flex justify-center items-center hover:cursor-pointer hover:bg-[#ff5200] hover:text-white duration-300">
+                            <RxCross2
+                                className="text-2xl font-semibold "
+                                onClick={hideSignMenu}
+                            />
+                        </button>
+                        {isLoggedIn ? (
+                            <h1 className="text-3xl font-semibold">
+                                Welcome User
+                            </h1>
+                        ) : (
+                            <div className="flex justify-between items-center">
+                                <div className="space-y-2">
+                                    <h1 className="text-3xl font-semibold">
+                                        Login
+                                    </h1>
+                                    <p>
+                                        and{' '}
+                                        <span className="text-[#ff5200] font-semibold">
+                                            Enjoy your time
+                                        </span>
+                                    </p>
+                                </div>
+                                <div className="w-28">
+                                    <img
+                                        src={LOGIN_IMG}
+                                        alt="login-image"
+                                        className="w-full h-full"
+                                    />
+                                </div>
+                            </div>
+                        )}
+                        <div className="space-y-2">
+                            <button
+                                className="bg-[#ff5200] text-white text-md py-4 uppercase font-semibold tracking-tighter hover:cursor-pointer w-full"
+                                onClick={
+                                    isLoggedIn
+                                        ? () => signOut(auth)
+                                        : signInWithGoogle
+                                }
+                            >
+                                {isLoggedIn ? (
+                                    <span>Logout</span>
+                                ) : (
+                                    <>Login with google</>
+                                )}
+                            </button>
+
+                            <p className="text-sm text-gray-600">
+                                {isLoggedIn ? (
+                                    <>
+                                        Thank you for your time and patience.
+                                        Come back soon !
+                                    </>
+                                ) : (
+                                    <>
+                                        By clicking on Login, I accept the Terms
+                                        & Conditions & Privacy Policy
+                                    </>
+                                )}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -94,35 +220,34 @@ const Header = () => {
                                 <Link
                                     to=""
                                     className="flex items-center gap-1 md:gap-2"
+                                    onClick={showSignMenu}
                                 >
                                     <FiUser />
-                                    Sign In
+                                    {isLoggedIn ? <>Hi, user</> : <>Sign In</>}
                                 </Link>
                             </li>
-                            
-                                <Link
-                                    to="/cart"
-                                    className="flex items-center gap-1 md:gap-2 hover:text-[#ff5200] hover:cursor-pointer"
-                                >
-                                 
-                                    {cartItems.length > 0 ? (
-                                        <div className="relative flex justify-center items-center">
-                                            <ShopingBag className="stroke-[#1ba672] fill-[#1ba672]" />
-                                            <span className="absolute text-[12px] text-white">
-                                                {cartItems.length}
-                                            </span>
-                                        </div>
-                                    ) : (
-                                        <div className="relative flex justify-center items-center ">
-                                            <ShopingBag className="stroke-[#282c3f] fill-white stroke-2 hover:stroke-[#FF5200] " />
-                                            <span className="absolute text-[12px] text-black hover:text-[#ff5200]">
-                                                {cartItems.length}
-                                            </span>
-                                        </div>
-                                    )}
-                                    Cart
-                                </Link>
-                           
+
+                            <Link
+                                to="/cart"
+                                className="flex items-center gap-1 md:gap-2 hover:text-[#ff5200] hover:cursor-pointer"
+                            >
+                                {cartItems.length > 0 ? (
+                                    <div className="relative flex justify-center items-center">
+                                        <ShopingBag className="stroke-[#1ba672] fill-[#1ba672]" />
+                                        <span className="absolute text-[12px] text-white">
+                                            {cartItems.length}
+                                        </span>
+                                    </div>
+                                ) : (
+                                    <div className="relative flex justify-center items-center ">
+                                        <ShopingBag className="stroke-[#282c3f] fill-white stroke-2 hover:stroke-[#FF5200] " />
+                                        <span className="absolute text-[12px] text-black hover:text-[#ff5200]">
+                                            {cartItems.length}
+                                        </span>
+                                    </div>
+                                )}
+                                Cart
+                            </Link>
                         </ul>
                     </nav>
                 </div>

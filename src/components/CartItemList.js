@@ -3,9 +3,12 @@ import { RES_CART_IMG } from '../../utils/constants';
 const CartItemList = ({ items }) => {
     return (
         <>
-            {items.map((item) => {
+            {items.map((item, index) => {
                 return (
-                    <div className="w-[100%] flex justify-between border-b-1 md:border-b-2 border-gray-300 items-center p-1 md:p-5">
+                    <div
+                        key={index}
+                        className="w-[100%] flex justify-between border-b-1 md:border-b-2 border-gray-300 items-center p-1 md:p-5"
+                    >
                         <div className="flex items-start gap-1 md:gap-5">
                             <div className="w-16 h-16 flex items-center">
                                 <img
