@@ -17,7 +17,7 @@ const Cart = () => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [isLoggedIn, setIsLoggedIn] = useState(null);
     const cartItems = useSelector((store) => store.cart.items);
-    // console.log('total', cartItems[0]?.card?.info?.price);
+    console.log('total', totalPrice);
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {

@@ -11,7 +11,6 @@ const useRestaurant = () => {
     const [categoryTitle, setCategoryTitle] = useState('');
     const [categoryData, setCategoryData] = useState([]);
 
- 
     useEffect(() => {
         fetchTopRestaurant();
     }, []);

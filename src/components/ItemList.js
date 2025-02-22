@@ -1,16 +1,22 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RES_MENU_IMG } from '../../utils/constants';
 import { addItem } from '../../utils/cartSlice';
 import toast from 'react-hot-toast';
 
 const ItemList = ({ items }) => {
-    // console.log('items', items);
+    // console.log('items', addItem);
+    const cartItems = useSelector((store) => store.cart.items);
+    console.log('cartItems', cartItems);
 
     const dispatch = useDispatch();
 
     const handleAddItem = (item) => {
-        dispatch(addItem(item));
-        toast.success('Added to the cart');
+        if (cartItems.includes(item)) {
+            toast.error('Already added to the Cart');
+        } else {
+            dispatch(addItem(item));
+            toast.success('Added to the cart');
+        }
     };
 
     return (
