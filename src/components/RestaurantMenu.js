@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router';
 import ItemCategory from './ItemCategory';
 import useRestaurantMenu from '../../hooks/useRestaurantMenu';
+import Star from './Star'
 
 const RestaurantMenu = () => {
     const { resId } = useParams();
@@ -26,37 +27,31 @@ const RestaurantMenu = () => {
         <>
             {category && category?.length && (
                 <div className=" flex flex-col gap-y-2 md:gap-y-5 md:w-[75%] lg:w-[65%] mx-auto p-2 md:p-5 my-2">
-                    <h1 className="font-sans  text-md md:text-2xl font-bold md:font-extrabold">
+                    <h1 className="font-sans my-4  text-xl md:text-2xl font-bold md:font-extrabold p-2">
                         {name}
                     </h1>
                     <section
-                        className="res-details"
+                        className="bg-white w-full p-4 rounded-lg border-1 border-gray-400 mb-2"
                         style={{
-                            backgroundColor: '#fff',
-                            width: '100%',
-                            // height: '100px',
-                            borderRadius: '0.8rem',
-                            border: '1px solid #ccc',
                             boxShadow: ' rgba(0, 0, 0, 0.25) 0px 10px 10px 0px',
-                            padding: '1rem',
                         }}
                     >
-                        <h3 className="text-lg font-bold">
-                            <span className="text-green-700">&#9733;</span>{' '}
+                        <h3 className="text-md font-semibold md:text-lg md:font-bold flex items-center gap-2">
+                            <Star />
                             {avgRating} ({totalRatingsString}) -{' '}
                             {costForTwoMessage}
                         </h3>
-                        <h3 className="text-md font-semibold text-orange-600 underline cursor-pointer">
+                        <h3 className="text-sm md:text-md font-medium md:font-semibold text-orange-600 underline cursor-pointer">
                             {cuisines.join(', ')}
                         </h3>
                         <div className="border-l-2 border-gray-400">
-                            <h3 className="text-sm text-black font-semibold m-3">
+                            <h3 className="text-sm text-black font-medium md:font-semibold m-2 md:m-3">
                                 Outlet{' '}
                                 <span className="font-medium text-gray-400 mx-3">
                                     {areaName}
                                 </span>
                             </h3>
-                            <h3 className="text-sm text-black font-semibold m-3">
+                            <h3 className="text-sm text-black font-medium md:font-semibold m-2 md:m-3">
                                 {sla.slaString.toLowerCase()}
                             </h3>
                         </div>

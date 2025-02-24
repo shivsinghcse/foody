@@ -17,11 +17,11 @@ const RestaurantCard = ({ resdata }) => {
 
     return (
         <>
-            <div className="w-[273px] hover:scale-95 duration-300">
-                <div className=" h-[182px] overflow-hidden rounded-[1rem] relative">
+            <div className="hover:scale-95 duration-300">
+                <div className="w-73 h-56 overflow-hidden rounded-[1rem] relative">
                     <img
                         src={RES_IMG + cloudinaryImageId}
-                        className="h-full w-full object-cover rounded-[1rem] "
+                        className=" object-cover rounded-[1rem] "
                         alt=""
                     />
 
@@ -34,7 +34,7 @@ const RestaurantCard = ({ resdata }) => {
                     </div>
                 </div>
                 <div className="p-3">
-                    <h2 className="text-lg font-bold truncate">{name}</h2>
+                    <h2 className="text-lg font-bold truncate">{name.length > 30 ? name.slice(0, 26)+'...': name}</h2>
                     <div className="flex items-center gap-1">
                         <Star className="inline" />
                         <div>
@@ -45,7 +45,7 @@ const RestaurantCard = ({ resdata }) => {
                             </span>
                         </div>
                     </div>
-                    <p className="truncate">{cuisines.join(', ')}</p>
+                    <p className="truncate">{cuisines.join().length > 30 ?cuisines.join(', ').slice(0, 30)+'...' : cuisines.join(', ')}</p>
                     <p>{areaName}</p>
                 </div>
             </div>

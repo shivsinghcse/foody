@@ -19,17 +19,18 @@ const ItemCategory = ({ data, showItems, setShowIndex }) => {
         <>
             <div
                 id={title}
-                className="w-full mx-auto hover:cursor-pointer shadow-lg border-t-2 border-gray-300"
+                className="w-full mx-auto hover:cursor-pointer shadow-lg border-t-1  border-gray-300"
             >
                 {/* Header */}
                 <div
-                    className="w-full p-3 flex justify-between "
+                    className="w-full py-2 px-3 flex justify-between "
                     onClick={handleClick}
                 >
-                    <h3 className="text-xl font-bold">
+                    <h3 className="md:text-xl font-semibold md:font-bold">
+                        
                         {`${title}(${itemCards.length})`}
                     </h3>
-                    <span className="text-xl">
+                    <span className="md:text-xl">
                         {showItem ? <FaAngleUp /> : <FaAngleDown />}
                     </span>
                 </div>

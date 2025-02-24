@@ -223,7 +223,7 @@ const Header = () => {
                                     className="flex items-center gap-1 md:gap-2"
                                     onClick={showSignMenu}
                                 >
-                                    <FiUser />
+                                    <FiUser fontSize={'20px'} />
                                     {isLoggedIn ? <>Hi, user</> : <>Sign In</>}
                                 </Link>
                             </li>
@@ -270,7 +270,10 @@ const Header = () => {
                         className="flex items-center ml-2 text-[#686b78] z-[999] "
                         onClick={showSideMenu}
                     >
-                        <CiLocationOn fontSize={'18px'} />
+                        <CiLocationOn
+                            fontSize={'18px'}
+                            className=" text-black"
+                        />
                         <span className="mx-[3px]"> Location</span>
                     </div>
                     <nav className=" ml-auto  text-[10px] mr-2 text-[#3d4152]">
@@ -281,7 +284,7 @@ const Header = () => {
                                     className="flex items-center gap-1 md:gap-2"
                                     onClick={showSignMenu}
                                 >
-                                    <FiUser fontSize={'18px'} />
+                                    <FiUser fontSize={'20px'} />
                                 </Link>
                             </li>
 

@@ -81,7 +81,7 @@ const Cart = () => {
                     <div className="w-[100%]  my-5 md:w-[70%]  mx-auto">
                         <CartItemList items={cartItems} />
                     </div>
-                    <div className="text-white text-lg font-semibold bg-green-500 flex justify-between p-2 md:w-[75%] mx-auto md:my-10">
+                    <div className="text-white md:text-lg font-medium md:font-semibold bg-green-500 flex justify-between py-2 px-6 md:w-[75%] mx-auto md:my-10">
                         <p>Total Price :</p>
                         <p className="flex items-center">
                             <BsCurrencyRupee className="inline" />
@@ -91,13 +91,13 @@ const Cart = () => {
 
                     <div className="flex justify-center">
                         <button
-                            className="border-1 py-2 px-4 rounded-lg font-semibold m-2 bg-green-500 text-white hover:cursor-pointer"
+                            className="border-2 py-2 px-4 rounded-lg font-semibold m-2 bg-green-500 hover:bg-white  hover:text-green-700 border-green-600 text-white hover:cursor-pointer duration-300"
                             onClick={() => buyNow(399)}
                         >
                             Place Order
                         </button>
                         <button
-                            className="border-1 py-2 px-4 rounded-lg font-semibold m-2 bg-[#ff5200] text-white hover:cursor-pointer"
+                            className="border-2 py-2 px-4 rounded-lg font-semibold m-2 bg-[#ff5200] hover:bg-white hover:border-[#ff5200] hover:text-[#ff5200] text-white hover:cursor-pointer duration-300"
                             onClick={handelClearItem}
                         >
                             Clear Cart

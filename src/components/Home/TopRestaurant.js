@@ -22,7 +22,7 @@ const TopRestaurant = ({ topRestaurant, topRestaurantChainTitle }) => {
             {topRestaurant && topRestaurant?.length !== 0 && (
                 <div className="w-[95%] md:w-[75%] mx-auto">
                     <div className="flex justify-between items-center  my-1 md:my-3">
-                        <div className="text-md md:text-2xl font-bold">
+                        <div className="text-md md:text-3xl font-bold">
                             {topRestaurantChainTitle}
                         </div>
                         <div className="flex gap-1 md:gap-2">

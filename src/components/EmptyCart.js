@@ -14,7 +14,7 @@ const EmptyCart = () => {
                 <div className="text-2xl font-bold my-3 text-[#35383D]">
                     Your cart is empty
                 </div>
-                <div className="text-md text-gray-700">
+                <div className="text-md text-center text-gray-700">
                     You can go to home page to view more restaurants
                 </div>
                 <Link to="/">
