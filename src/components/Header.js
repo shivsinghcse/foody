@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import ShopingBag from './ShopingBag';
 import { RxCross2 } from 'react-icons/rx';
 import firebaseAppConfig from '../../utils/firebaseConfig';
+import { CiLocationOn } from 'react-icons/ci';
 import {
     getAuth,
     GoogleAuthProvider,
@@ -27,11 +28,11 @@ const Header = () => {
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                console.log('loged in');
+                // console.log('loged in');
                 setIsOpen(false);
                 setIsLoggedIn(user);
             } else {
-                console.log('not loged in');
+                // console.log('not loged in');
                 setIsLoggedIn(false);
                 setIsOpen(false);
             }
@@ -190,7 +191,7 @@ const Header = () => {
                 </div>
             </div>
             {/* header  */}
-            <header className="p-3 shadow-xl bg-white sticky top-0 left-0 z-50">
+            <header className="hidden md:block p-3 shadow-xl bg-white sticky top-0 left-0 z-50">
                 <div className="w-full md:w-[85%] xl:w-[80%] mx-auto  flex items-center overflow-hidden">
                     <Link to="/">
                         <div className="w-10 md:w-14">
@@ -202,14 +203,14 @@ const Header = () => {
                         </div>
                     </Link>
                     <div
-                        className="ml-2 md:ml-5 text-[#686b78] z-[999] text-[8px] md:text-[16px]"
+                        className="group ml-2 md:ml-5 text-[#686b78] z-[999] text-[8px] md:text-[16px]"
                         onClick={showSideMenu}
                     >
-                        <span className="font-semibold border-b-1  mx-[3px] md:font-bold md:border-b-2 md:mx-[5px] hover:text-[#ff5200] hover:cursor-pointer">
+                        <span className="font-semibold border-b-1  mx-[3px] md:font-bold md:border-b-2 md:mx-[5px] group-hover:text-[#ff5200] hover:cursor-pointer">
                             {' '}
                             Other
                         </span>
-                        <span className="cursor-pointer">
+                        <span className="cursor-pointer group-hover:text-gray-400">
                             Lucknow, Uttar Pradesh, India
                         </span>
                         <RxCaretDown className="inline text-[#ff5200] text-[1rem] md:text-[1.7rem] font-extrabold hover:cursor-pointer" />
@@ -229,24 +230,80 @@ const Header = () => {
 
                             <Link
                                 to="/cart"
-                                className="flex items-center gap-1 md:gap-2 hover:text-[#ff5200] hover:cursor-pointer"
+                                className="group flex items-center gap-1 md:gap-2 hover:text-[#ff5200] hover:cursor-pointer stroke-2 stroke-[#686b78]  hover:stroke-[#FF5200] "
                             >
                                 {cartItems.length > 0 ? (
                                     <div className="relative flex justify-center items-center">
-                                        <ShopingBag className="stroke-[#1ba672] fill-[#1ba672]" />
+                                        <ShopingBag className=" fill-[#1ba672] group-hover:fill-[#ff5200]" />
                                         <span className="absolute text-[12px] text-white">
                                             {cartItems.length}
                                         </span>
                                     </div>
                                 ) : (
-                                    <div className="relative flex justify-center items-center ">
-                                        <ShopingBag className="stroke-[#282c3f] fill-white stroke-2 hover:stroke-[#FF5200] " />
-                                        <span className="absolute text-[12px] text-black hover:text-[#ff5200]">
+                                    <div className="relative flex justify-center items-center">
+                                        <ShopingBag className=" fill-white " />
+                                        <span className="absolute text-[12px]  ">
                                             {cartItems.length}
                                         </span>
                                     </div>
                                 )}
                                 Cart
+                            </Link>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+
+            {/* header for mobile */}
+            <header className="md:hidden py-3 px-6 shadow-xl bg-white sticky top-0 left-0 z-50">
+                <div className="w-full  flex items-center overflow-hidden">
+                    <Link to="/">
+                        <div className="w-10">
+                            <img
+                                src={LOGO_URL}
+                                alt="logo"
+                                className="w-full rounded-full border-[0.5px]"
+                            />
+                        </div>
+                    </Link>
+                    <div
+                        className="flex items-center ml-2 text-[#686b78] z-[999] "
+                        onClick={showSideMenu}
+                    >
+                        <CiLocationOn fontSize={'18px'} />
+                        <span className="mx-[3px]"> Location</span>
+                    </div>
+                    <nav className=" ml-auto  text-[10px] mr-2 text-[#3d4152]">
+                        <ul className="flex  list-none gap-5">
+                            <li className="hover:text-[#ff5200] hover:cursor-pointer ">
+                                <Link
+                                    to=""
+                                    className="flex items-center gap-1 md:gap-2"
+                                    onClick={showSignMenu}
+                                >
+                                    <FiUser fontSize={'18px'} />
+                                </Link>
+                            </li>
+
+                            <Link
+                                to="/cart"
+                                className="group flex items-center gap-1 md:gap-2 hover:text-[#ff5200] hover:cursor-pointer stroke-2 stroke-[#686b78]  hover:stroke-[#FF5200] "
+                            >
+                                {cartItems.length > 0 ? (
+                                    <div className="relative flex justify-center items-center">
+                                        <ShopingBag className=" fill-[#1ba672] group-hover:fill-[#ff5200]" />
+                                        <span className="absolute text-[12px] text-white">
+                                            {cartItems.length}
+                                        </span>
+                                    </div>
+                                ) : (
+                                    <div className="relative flex justify-center items-center">
+                                        <ShopingBag className=" fill-white " />
+                                        <span className="absolute text-[12px]  ">
+                                            {cartItems.length}
+                                        </span>
+                                    </div>
+                                )}
                             </Link>
                         </ul>
                     </nav>
