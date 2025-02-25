@@ -30,11 +30,11 @@ const CartItemList = ({ items }) => {
                                 <p>
                                     {item.card.info.itemAttribute
                                         .vegClassifier === 'VEG' ? (
-                                        <span className="border-1 md:border-2 border-green-500 p-[1px]  md:pb-[0.7px] rounded text-[5px]">
+                                        <span className="border-1 md:border-2 border-green-500 p-[1px]  md:pb-[0.7px] rounded text-[5px]  md:text-[8px]">
                                             🟢
                                         </span>
                                     ) : (
-                                        <span className="border-1 md:border-2 border-red-500 p-[1px] pb-[0.4px] md:pb-[0.7px] rounded text-[5px] md:text-xs">
+                                        <span className="border-1 md:border-2 border-red-500 p-[1px] pb-[0.4px] md:pb-[0.7px] rounded text-[5px] md:text-[8px]">
                                             🔴
                                         </span>
                                     )}

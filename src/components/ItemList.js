@@ -1,11 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { DUMMY_IMG, RES_MENU_IMG } from '../../utils/constants';
-import { addItem } from '../../utils/cartSlice';
+import { addItem, clearCart } from '../../utils/cartSlice';
 import toast from 'react-hot-toast';
 import Star from './Star';
-import { addRestaurant } from '../../utils/resSlice';
+import { addRestaurant, clearRestaurant } from '../../utils/resSlice';
+import { useState } from 'react';
 
 const ItemList = ({ items, resData }) => {
+    const [freshStart, setFreshStart] = useState(false);
     // console.log('items', addItem);
     console.log('res', resData);
 
@@ -21,12 +23,26 @@ const ItemList = ({ items, resData }) => {
         if (cartItems.includes(item)) {
             toast.error('Already added to the Cart');
         } else {
-            if(!restaurant.includes(resData)){
-                dispatch(addRestaurant(resData));
+            if (!restaurant.includes(resData)) {
+                if (restaurant.length === 0) {
+                    dispatch(addRestaurant(resData));
+                    dispatch(addItem(item));
+                    toast.success('Added to the cart');
+                } else {
+                    setFreshStart(true);
+                }
+            } else {
+                dispatch(addItem(item));
+                toast.success('Added to the cart');
             }
-            dispatch(addItem(item));
-            toast.success('Added to the cart');
         }
+    };
+
+    const freshStartCart = (resData) => {
+        dispatch(clearRestaurant());
+        dispatch(clearCart());
+        dispatch(addRestaurant(resData));
+        setFreshStart(false);
     };
 
     return (
@@ -45,7 +61,7 @@ const ItemList = ({ items, resData }) => {
                                         🟢
                                     </span>
                                 ) : (
-                                    <span className="border-1 md:border-2 border-red-500 pb-[0.4px] p-[1px] md:pb-[0.7px] rounded text-[8px]  md:text-xs">
+                                    <span className="border-1 md:border-2 border-red-500 pb-[0.4px] p-[1px]  md:pb-[0.7px] rounded text-[8px]  md:text-xs">
                                         🔴
                                     </span>
                                 )}
@@ -115,6 +131,38 @@ const ItemList = ({ items, resData }) => {
                     </div>
                 );
             })}
+            <div
+                className=" w-3/12 px-6 py-6 bg-white  shadow-lg mx-auto  fixed bottom-30 left-[38%]  duration-1000 z-99 cursor-default animate__animated animate__fadeInUp"
+                style={{ display: freshStart ? 'block' : 'none' }}
+            >
+                <h2 className="text-xl pb-2 font-semibold">
+                    Items already in cart
+                </h2>
+                <p className="text-sm pb-2 text-gray-600">
+                    Your cart contains items from other restaurant. Would you
+                    like to reset your cart for adding items from this
+                    restaurant?
+                </p>
+                <div className="flex justify-evenly  my-4 ">
+                    <button
+                        className="border-2 border-green-400 py-2 w-42  font-semibold hover:cursor-pointer"
+                        onClick={() => {
+                            setFreshStart(false);
+                        }}
+                    >
+                        No
+                    </button>
+                    <button
+                        className="border-2 border-green-400 bg-green-400 w-42 font-semibold text-white hover:cursor-pointer"
+                        onClick={() => {
+                            freshStartCart(resData);
+                            setFreshStart(false);
+                        }}
+                    >
+                        Yes, start a Fresh
+                    </button>
+                </div>
+            </div>
         </>
     );
 };

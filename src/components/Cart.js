@@ -82,10 +82,10 @@ const Cart = () => {
             {cartItems.length > 0 ? (
                 <div className="p-1 m-1">
                     <div className="md:w-6/12 shadow md:shadow-md rounded-md mx-auto md:my-8 flex md:space-x-6 space-x-4 md:p-4 p-2 justify-center">
-                        <img src={RES_CART_IMG + restaurant[0].cloudinaryImageId} className='shadow-lg rounded w-24 ' />
+                        <img src={RES_CART_IMG + restaurant[0]?.cloudinaryImageId} className='shadow-lg rounded w-24 ' />
                        <div>
-                       <h2 className='text-2xl font-bold'>{restaurant[0].name}</h2>
-                       <label className='text-md text-gray-600 font-medium'>{restaurant[0].areaName}</label>
+                       <h2 className='text-2xl font-bold'>{restaurant[0]?.name}</h2>
+                       <label className='text-md text-gray-600 font-medium'>{restaurant[0]?.areaName}</label>
                        </div>
                     </div>
                     <div className="w-[100%]  my-5 md:w-[70%]  mx-auto">

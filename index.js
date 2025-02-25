@@ -5,6 +5,7 @@ import { BrowserRouter } from 'react-router';
 import { Provider } from 'react-redux';
 import appStore from './utils/appStore';
 import toast, { Toaster } from 'react-hot-toast';
+import 'animate.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

@@ -9,9 +9,12 @@ const restaurantSlice = createSlice({
         addRestaurant : (state, action) => {
             state.res.push(action.payload);
         },
+        clearRestaurant : (state) => {
+            state.res.length = 0;
+        }
         
     },
 });
 
-export const { addRestaurant } = restaurantSlice.actions;
+export const { addRestaurant, clearRestaurant } = restaurantSlice.actions;
 export default restaurantSlice.reducer;
