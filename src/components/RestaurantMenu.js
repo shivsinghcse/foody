@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useParams } from 'react-router';
 import ItemCategory from './ItemCategory';
 import useRestaurantMenu from '../../hooks/useRestaurantMenu';
-import Star from './Star'
+import Star from './Star';
 
 const RestaurantMenu = () => {
     const { resId } = useParams();
@@ -21,7 +21,7 @@ const RestaurantMenu = () => {
         sla,
     } = resData;
 
-    // console.log(category);
+    // console.log(resData);
 
     return (
         <>
@@ -69,6 +69,7 @@ const RestaurantMenu = () => {
                             <ItemCategory
                                 key={index}
                                 data={category}
+                                resData={resData}
                                 showItems={index === showIndex && true}
                                 setShowIndex={() => setShowIndex(index)}
                             />

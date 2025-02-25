@@ -3,11 +3,17 @@ import { DUMMY_IMG, RES_MENU_IMG } from '../../utils/constants';
 import { addItem } from '../../utils/cartSlice';
 import toast from 'react-hot-toast';
 import Star from './Star';
+import { addRestaurant } from '../../utils/resSlice';
 
-const ItemList = ({ items }) => {
+const ItemList = ({ items, resData }) => {
     // console.log('items', addItem);
+    console.log('res', resData);
+
     const cartItems = useSelector((store) => store.cart.items);
-    console.log('cartItems', cartItems);
+    // console.log('cartItems', cartItems);
+
+    const restaurant = useSelector((store) => store.restaurant.res);
+    console.log('restaurant', restaurant);
 
     const dispatch = useDispatch();
 
@@ -15,6 +21,9 @@ const ItemList = ({ items }) => {
         if (cartItems.includes(item)) {
             toast.error('Already added to the Cart');
         } else {
+            if(!restaurant.includes(resData)){
+                dispatch(addRestaurant(resData));
+            }
             dispatch(addItem(item));
             toast.success('Added to the cart');
         }

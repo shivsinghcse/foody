@@ -5,7 +5,7 @@ import { clearCart } from '../../utils/cartSlice';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRazorpay, RazorpayOrderOptions } from 'react-razorpay';
-import { LOGO_URL } from '../../utils/constants';
+import { LOGO_URL, RES_CART_IMG } from '../../utils/constants';
 import EmptyCart from './EmptyCart';
 import firebaseAppConfig from '../../utils/firebaseConfig';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
@@ -31,6 +31,9 @@ const Cart = () => {
             }
         });
     }, []);
+
+    const restaurant = useSelector((store) => store.restaurant.res);
+    console.log('restaurant', restaurant);
 
     const dispatch = useDispatch();
 
@@ -78,8 +81,12 @@ const Cart = () => {
         <>
             {cartItems.length > 0 ? (
                 <div className="p-1 m-1">
-                    <div className="text-2xl font-bold underline text-center">
-                        Cart
+                    <div className="md:w-6/12 shadow md:shadow-md rounded-md mx-auto md:my-8 flex md:space-x-6 space-x-4 md:p-4 p-2 justify-center">
+                        <img src={RES_CART_IMG + restaurant[0].cloudinaryImageId} className='shadow-lg rounded w-24 ' />
+                       <div>
+                       <h2 className='text-2xl font-bold'>{restaurant[0].name}</h2>
+                       <label className='text-md text-gray-600 font-medium'>{restaurant[0].areaName}</label>
+                       </div>
                     </div>
                     <div className="w-[100%]  my-5 md:w-[70%]  mx-auto">
                         <CartItemList items={cartItems} />

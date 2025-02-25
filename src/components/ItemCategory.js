@@ -2,7 +2,7 @@ import { useState } from 'react';
 import ItemList from './ItemList';
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa6';
 
-const ItemCategory = ({ data, showItems, setShowIndex }) => {
+const ItemCategory = ({ data, showItems, setShowIndex, resData }) => {
     // console.log('data', data);
     const { title, itemCards } = data.card.card;
     const [showItem, setShowItem] = useState(false);
@@ -37,7 +37,7 @@ const ItemCategory = ({ data, showItems, setShowIndex }) => {
 
                 {/* body */}
 
-                {showItem && <ItemList items={itemCards} />}
+                {showItem && <ItemList items={itemCards} resData={resData} />}
             </div>
         </>
     );
