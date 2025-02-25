@@ -24,11 +24,14 @@ const Header = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [location, setLocation] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(null);
+    const [userName, setUserName] = useState('User');
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 // console.log('loged in');
+                // console.log(user.displayName);
+                setUserName(user.displayName);
                 setIsOpen(false);
                 setIsLoggedIn(user);
             } else {
@@ -132,8 +135,8 @@ const Header = () => {
                             />
                         </button>
                         {isLoggedIn ? (
-                            <h1 className="text-3xl font-semibold">
-                                Welcome User
+                            <h1 className="text-2xl font-semibold">
+                                Welcome {userName}
                             </h1>
                         ) : (
                             <div className="flex justify-between items-center">
@@ -224,7 +227,7 @@ const Header = () => {
                                     onClick={showSignMenu}
                                 >
                                     <FiUser fontSize={'20px'} />
-                                    {isLoggedIn ? <>Hi, user</> : <>Sign In</>}
+                                    {isLoggedIn ? <span className='text-[16px]'>{userName}</span> : <>Sign In</>}
                                 </Link>
                             </li>
 
