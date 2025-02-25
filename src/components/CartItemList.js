@@ -1,4 +1,4 @@
-import { RES_CART_IMG } from '../../utils/constants';
+import { DUMMY_IMG, RES_CART_IMG } from '../../utils/constants';
 
 const CartItemList = ({ items }) => {
     return (
@@ -13,18 +13,23 @@ const CartItemList = ({ items }) => {
                             <div className="w-16 h-16 flex items-center">
                                 <img
                                     className=" object-cover cursor-pointer rounded-xl shadow-xl"
-                                    src={RES_CART_IMG + item.card.info.imageId}
+                                    src={
+                                        item.card.info.imageId === undefined
+                                            ? DUMMY_IMG
+                                            : RES_CART_IMG +
+                                              item.card.info.imageId
+                                    }
                                 />
                             </div>
                             <div className="flex flex-col  ">
                                 <p>
                                     {item.card.info.itemAttribute
                                         .vegClassifier === 'VEG' ? (
-                                        <span className="border-1 md:border-2 border-green-500 p-[1px] md:pb-[0.7px] rounded text-[5px]">
+                                        <span className="border-1 md:border-2 border-green-500 p-[1px] pb-[0.4px] md:pb-[0.7px] rounded text-[5px]">
                                             🟢
                                         </span>
                                     ) : (
-                                        <span className="border-1 md:border-2 border-red-500 p-[1px] md:pb-[0.7px] rounded text-[5px] md:text-xs">
+                                        <span className="border-1 md:border-2 border-red-500 p-[1px] pb-[0.4px] md:pb-[0.7px] rounded text-[5px] md:text-xs">
                                             🔴
                                         </span>
                                     )}

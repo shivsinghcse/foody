@@ -1,4 +1,4 @@
-import { RES_IMG } from '../../utils/constants';
+import { DUMMY_IMG, RES_IMG } from '../../utils/constants';
 import { BsDot } from 'react-icons/bs';
 import Star from './Star';
 const RestaurantCard = ({ resdata }) => {
@@ -20,7 +20,7 @@ const RestaurantCard = ({ resdata }) => {
             <div className="hover:scale-95 duration-300">
                 <div className="w-73 h-56 overflow-hidden rounded-[1rem] relative">
                     <img
-                        src={RES_IMG + cloudinaryImageId}
+                        src={cloudinaryImageId === undefined ? DUMMY_IMG : RES_IMG + cloudinaryImageId}
                         className=" object-cover rounded-[1rem] "
                         alt=""
                     />

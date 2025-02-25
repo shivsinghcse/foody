@@ -18,7 +18,7 @@ const Category = ({ categoryTitle, categoryData }) => {
     return (
         <>
             {categoryData && categoryData?.length !== 0 && (
-                <div className="w-[95%] md:w-[75%] mx-auto touch-pan-x">
+                <div className="w-[95%] md:w-[75%] mx-auto">
                     <div className="flex justify-between items-center  my-2 md:my-5">
                         <div className="text-md md:text-2xl font-bold">
                             {categoryTitle}
@@ -42,7 +42,7 @@ const Category = ({ categoryTitle, categoryData }) => {
                                 return (
                                     <div
                                         key={category.id}
-                                        className="w-[50px] md:w-[150px]   shrink-0 duration-500 cursor-pointer touch-pan-x"
+                                        className="w-[50px] md:w-[150px]   shrink-0 duration-500 cursor-pointer"
                                         style={{
                                             transform: `translateX(${
                                                 slide * -90

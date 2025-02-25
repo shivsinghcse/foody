@@ -16,6 +16,7 @@ const Cart = () => {
     const { error, isLoading, Razorpay } = useRazorpay();
     const [totalPrice, setTotalPrice] = useState(0);
     const [isLoggedIn, setIsLoggedIn] = useState(null);
+    const [loader, setLoader] = useState(false);
     const cartItems = useSelector((store) => store.cart.items);
     console.log('total', totalPrice);
 
@@ -39,6 +40,7 @@ const Cart = () => {
 
     const buyNow = async (price) => {
         if (isLoggedIn) {
+            setLoader(true);
             try {
                 const { data } = await axios.post(
                     'https://payment-server-tau.vercel.app/order',
@@ -60,6 +62,7 @@ const Cart = () => {
                 };
                 const rzp = new Razorpay(options);
                 rzp.open();
+                setLoader(false);
                 rzp.on('payment.failed', function (response) {
                     console.log(response);
                 });
@@ -106,6 +109,18 @@ const Cart = () => {
                 </div>
             ) : (
                 <EmptyCart />
+            )}
+            {loader && (
+                <div className="w-full h-full bg-[#5a5a5aa1] fixed top-0 left-0 flex flex-col justify-center items-center">
+                    <svg
+                        className="size-16 rounded-full border-6 border-t-[#ff5200] border-[#ffffff] animate-spin"
+                        viewBox="0 0 24 24"
+                    ></svg>
+
+                    <h1 className="text-3xl text-[#ff5200]  px-6 py-2 font-bold mt-5 bg-white">
+                        Redirecting to Payment page...
+                    </h1>
+                </div>
             )}
         </>
     );
