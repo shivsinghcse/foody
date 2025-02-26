@@ -3,9 +3,9 @@ import { createSlice } from '@reduxjs/toolkit';
 const locationSlice = createSlice({
     name: 'location',
     initialState: {
-        userLocation: localStorage.getItem("userLocation")
-        ? JSON.parse(localStorage.getItem("userLocation"))
-        : null,
+        userLocation: localStorage.getItem('userLocation')
+            ? JSON.parse(localStorage.getItem('userLocation'))
+            : null,
     },
     reducers: {
         getLocation: (state, action) => {
@@ -19,4 +19,4 @@ const locationSlice = createSlice({
 });
 
 export default locationSlice.reducer;
-export const {getLocation} = locationSlice.actions;
+export const { getLocation } = locationSlice.actions;

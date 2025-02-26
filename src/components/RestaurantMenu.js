@@ -52,7 +52,7 @@ const RestaurantMenu = () => {
                                 </span>
                             </h3>
                             <h3 className="text-sm text-black font-medium md:font-semibold m-2 md:m-3">
-                                {sla.slaString.toLowerCase()}
+                                {sla?.slaString?.toLowerCase()}
                             </h3>
                         </div>
                     </section>
