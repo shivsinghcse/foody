@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import CartItemList from './CartItemList';
 import { BsCurrencyRupee } from 'react-icons/bs';
 import { clearCart } from '../../utils/cartSlice';
+import { addRestaurant, clearRestaurant } from '../../utils/resSlice';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRazorpay, RazorpayOrderOptions } from 'react-razorpay';
@@ -39,6 +40,7 @@ const Cart = () => {
 
     const handelClearItem = () => {
         dispatch(clearCart());
+         dispatch(clearRestaurant());
     };
 
     const buyNow = async (price) => {

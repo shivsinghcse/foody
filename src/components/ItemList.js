@@ -9,13 +9,13 @@ import { useState } from 'react';
 const ItemList = ({ items, resData }) => {
     const [freshStart, setFreshStart] = useState(false);
     // console.log('items', addItem);
-    console.log('res', resData);
+    // console.log('res', resData);
 
     const cartItems = useSelector((store) => store.cart.items);
     // console.log('cartItems', cartItems);
 
     const restaurant = useSelector((store) => store.restaurant.res);
-    console.log('restaurant', restaurant);
+    // console.log('restaurant', restaurant[0]);
 
     const dispatch = useDispatch();
 
@@ -23,13 +23,22 @@ const ItemList = ({ items, resData }) => {
         if (cartItems.includes(item)) {
             toast.error('Already added to the Cart');
         } else {
-            if (!restaurant.includes(resData)) {
+            if (!restaurant?.includes(resData)) {
                 if (restaurant.length === 0) {
                     dispatch(addRestaurant(resData));
                     dispatch(addItem(item));
                     toast.success('Added to the cart');
                 } else {
-                    setFreshStart(true);
+                    if (
+                        JSON.stringify(restaurant[0]) ===
+                        JSON.stringify(resData)
+                    ) {
+                        setFreshStart(false);
+                        dispatch(addItem(item));
+                        toast.success('Added to the cart');
+                    } else {
+                        setFreshStart(true);
+                    }
                 }
             } else {
                 dispatch(addItem(item));
@@ -132,10 +141,10 @@ const ItemList = ({ items, resData }) => {
                 );
             })}
             <div
-                className=" w-3/12 px-6 py-6 bg-white  shadow-lg mx-auto  fixed bottom-30 left-[38%]  duration-1000 z-99 cursor-default animate__animated animate__fadeInUp"
+                className=" w-10/12 md:w-6/12 md:p-6 px-4 py-3 bg-white  shadow-lg mx-auto  fixed md:bottom-20 md:left-[25%] bottom-15 left-[9%]  duration-1000 z-99 cursor-default animate__animated animate__fadeInUp"
                 style={{ display: freshStart ? 'block' : 'none' }}
             >
-                <h2 className="text-xl pb-2 font-semibold">
+                <h2 className="text-xl pb-2 font-bold">
                     Items already in cart
                 </h2>
                 <p className="text-sm pb-2 text-gray-600">
@@ -143,9 +152,9 @@ const ItemList = ({ items, resData }) => {
                     like to reset your cart for adding items from this
                     restaurant?
                 </p>
-                <div className="flex justify-evenly  my-4 ">
+                <div className="flex md:space-x-10 space-x-6 justify-center  my-4 ">
                     <button
-                        className="border-2 border-green-400 py-2 w-42  font-semibold hover:cursor-pointer"
+                        className="border-2 border-green-400 py-2 md:w-42 w-36  font-semibold hover:cursor-pointer "
                         onClick={() => {
                             setFreshStart(false);
                         }}
@@ -153,7 +162,7 @@ const ItemList = ({ items, resData }) => {
                         No
                     </button>
                     <button
-                        className="border-2 border-green-400 bg-green-400 w-42 font-semibold text-white hover:cursor-pointer"
+                        className="border-2 border-green-400 px-2 bg-green-400 md:w-42 w-36 font-semibold text-white hover:cursor-pointer uppercase"
                         onClick={() => {
                             freshStartCart(resData);
                             setFreshStart(false);
