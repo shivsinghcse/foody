@@ -1,9 +1,15 @@
 import { RxCaretDown, RxCross2 } from 'react-icons/rx';
 import { FiUser } from 'react-icons/fi';
 import { useEffect, useState } from 'react';
-import { LOGIN_IMG, LOGO_URL } from '../../utils/constants';
+import {
+    ADDRESS_API,
+    LOGIN_IMG,
+    LOGO_URL,
+    SEARCH_LOCATION_API,
+    VITE_URL,
+} from '../../utils/constants';
 import { Link } from 'react-router';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ShopingBag from './ShopingBag';
 import { RxCross2 } from 'react-icons/rx';
 import firebaseAppConfig from '../../utils/firebaseConfig';
@@ -15,6 +21,7 @@ import {
     onAuthStateChanged,
     signOut,
 } from 'firebase/auth';
+import { getLocation } from '../../utils/locationSlice';
 
 const auth = getAuth(firebaseAppConfig);
 const googleProvider = new GoogleAuthProvider();
@@ -22,9 +29,12 @@ const googleProvider = new GoogleAuthProvider();
 const Header = () => {
     const [toggle, setToggle] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
-    const [location, setLocation] = useState('');
+    const [location, setLocation] = useState([]);
+    const [searchtext, setSearchText] = useState('');
     const [isLoggedIn, setIsLoggedIn] = useState(null);
     const [userName, setUserName] = useState('User');
+
+    const dispatch = useDispatch();
 
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
@@ -65,11 +75,54 @@ const Header = () => {
 
     const cartItems = useSelector((store) => store.cart.items);
     // console.log(cartItems);
+    const userLocation = useSelector((store) => store.location.userLocation);
+    // console.log('location', userLocation);
 
-    const handelInput = () => {
-        const fetchlocation = async () => {
-            const data = await fetch();
-        };
+    const handelSearchLocation = async (e) => {
+        try {
+            setSearchText(e.target.value);
+            if (searchtext.length >= 3) {
+                const response = await fetch(
+                    VITE_URL + SEARCH_LOCATION_API + searchtext
+                );
+
+                if (!response.ok) {
+                    const err = response.status;
+                    throw new err();
+                } else {
+                    const json = await response.json();
+                    setLocation(json?.data);
+                    // console.log(location);
+                }
+            }
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const handelUserLocation = async (placeid) => {
+        try {
+            const response = await fetch(VITE_URL + ADDRESS_API + placeid);
+            if (!response.ok) {
+                const err = response.status;
+                throw new err();
+            } else {
+                const { data } = await response.json();
+                console.log(data);
+                dispatch(
+                    getLocation({
+                        city: data[0]?.address_components[0]?.short_name,
+                        lat: data[0]?.geometry?.location?.lat,
+                        lng: data[0]?.geometry?.location?.lng,
+                        address: data[0]?.formatted_address,
+                        placeType: data[0]?.place_type,
+                    })
+                );
+            }
+            window.location.reload();
+        } catch (err) {
+            console.log(err);
+        }
     };
 
     return (
@@ -96,18 +149,53 @@ const Header = () => {
                         onClick={hideSideMenu}
                     />
                     <div className=" w-[70%]  mx-auto absolute top-[15%] left-[15%]">
-                        <form onSubmit={handelInput}>
-                            <input
-                                type="text"
-                                placeholder="Search for area, street name.."
-                                className="w-full border-1 p-2"
-                                value={location}
-                                onChange={(e) => {
-                                    setLocation(e.target.value);
-                                }}
-                            />
-                        </form>
+                        <input
+                            type="text"
+                            placeholder="Search for area, street name.."
+                            className="w-full border-1 p-2"
+                            value={searchtext}
+                            onChange={(e) => {
+                                handelSearchLocation(e);
+                            }}
+                        />
                     </div>
+                    <ul className="w-[70%]  mx-auto absolute top-[25%] left-[15%]">
+                        {searchtext &&
+                            location.map((item) => {
+                                return (
+                                    <li
+                                        className="bg-white border-b-1 border-dashed hover:cursor-pointer"
+                                        key={item.place_id}
+                                        onClick={() =>
+                                            handelUserLocation(item?.place_id)
+                                        }
+                                    >
+                                        <div className=" flex md:p-6 p-4 space-x-4">
+                                            <CiLocationOn
+                                                fontSize={'18px'}
+                                                className=" text-black mt-1"
+                                            />
+                                            <div className=" flex flex-col ">
+                                                <h3 className="text-md font-semibold">
+                                                    {
+                                                        item
+                                                            ?.structured_formatting
+                                                            ?.main_text
+                                                    }
+                                                </h3>
+                                                <h4 className="text-sm text-gray-500">
+                                                    {
+                                                        item
+                                                            ?.structured_formatting
+                                                            ?.secondary_text
+                                                    }
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    </li>
+                                );
+                            })}
+                    </ul>
                 </div>
             </div>
             {/* login drawer */}
@@ -205,20 +293,32 @@ const Header = () => {
                             />
                         </div>
                     </Link>
-                    <div
-                        className="group ml-2 md:ml-5 text-[#686b78] z-[999] text-[8px] md:text-[16px]"
+                    <button
+                        className="group ml-2 md:ml-5 text-[#686b78] z-[999] text-[8px] md:text-[16px] w-[300px]  flex items-center"
                         onClick={showSideMenu}
                     >
-                        <span className="font-semibold border-b-1  mx-[3px] md:font-bold md:border-b-2 md:mx-[5px] group-hover:text-[#ff5200] hover:cursor-pointer">
-                            {' '}
-                            Other
-                        </span>
-                        <span className="cursor-pointer group-hover:text-gray-400">
-                            Lucknow, Uttar Pradesh, India
-                        </span>
-                        <RxCaretDown className="inline text-[#ff5200] text-[1rem] md:text-[1.7rem] font-extrabold hover:cursor-pointer" />
-                    </div>
-                    <nav className="f ml-auto  text-[10px] md:text-[18px] font-semibold mr-2 md:mr-5 text-[#3d4152]">
+                        {userLocation ? (
+                            <>
+                                <span className="font-semibold border-b-1  mx-[3px] md:font-bold md:border-b-2 md:mx-[5px] group-hover:text-[#ff5200] hover:cursor-pointer">
+                                    {userLocation.placeType}
+                                </span>
+                                <span className="cursor-pointer px-1 group-hover:text-gray-400  truncate text-sm w-[220px]">
+                                    {userLocation.address}
+                                </span>
+                            </>
+                        ) : (
+                            <>
+                                <span className="font-bold mr-1 underline ">
+                                    Others
+                                </span>
+                                <span className="text-sm text-gray-400">
+                                    Lucknow, Uttar Pradesh, India
+                                </span>
+                            </>
+                        )}
+                        <RxCaretDown className=" text-[#ff5200] text-[1rem] md:text-[1.7rem] font-extrabold hover:cursor-pointer" />
+                    </button>
+                    <nav className=" ml-auto  text-[10px] md:text-[18px] font-semibold mr-2 md:mr-5 text-[#3d4152]">
                         <ul className="flex  list-none gap-2 md:gap-5">
                             <li className="hover:text-[#ff5200] hover:cursor-pointer ">
                                 <Link
@@ -227,7 +327,13 @@ const Header = () => {
                                     onClick={showSignMenu}
                                 >
                                     <FiUser fontSize={'20px'} />
-                                    {isLoggedIn ? <span className='text-[16px]'>{userName}</span> : <>Sign In</>}
+                                    {isLoggedIn ? (
+                                        <span className="text-[16px]">
+                                            {userName}
+                                        </span>
+                                    ) : (
+                                        <>Sign In</>
+                                    )}
                                 </Link>
                             </li>
 

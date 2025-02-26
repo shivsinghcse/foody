@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { RES_API, VITE_URL } from '../utils/constants';
+import { VITE_URL } from '../utils/constants';
+import { useSelector } from 'react-redux';
 
 const useRestaurant = () => {
     const [topRestaurant, setTopRestaurant] = useState([]);
@@ -11,12 +12,20 @@ const useRestaurant = () => {
     const [categoryTitle, setCategoryTitle] = useState('');
     const [categoryData, setCategoryData] = useState([]);
 
+    const userLocation = useSelector((store) => store.location.userLocation);
+    // console.log('location', userLocation);
+    const lat = userLocation?.lat ? userLocation?.lat : 26.8466937;
+    const lng = userLocation?.lng ? userLocation?.lng : 80.94616599999999;
+
     useEffect(() => {
         fetchTopRestaurant();
     }, []);
 
     const fetchTopRestaurant = async () => {
-        const response = await fetch(VITE_URL + RES_API);
+        const response = await fetch(
+            VITE_URL +
+                `/restaurants/list/v5?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`
+        );
         const json = await response.json();
 
         // console.log('main', json.data.cards);
