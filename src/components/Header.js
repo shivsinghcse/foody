@@ -308,12 +308,12 @@ const Header = () => {
                             </>
                         ) : (
                             <>
-                                <span className="font-bold mr-1 underline ">
+                                {/* <span className="font-bold mr-1 underline ">
                                     Others
                                 </span>
                                 <span className="text-sm text-gray-400">
                                     Lucknow, Uttar Pradesh, India
-                                </span>
+                                </span> */}
                             </>
                         )}
                         <RxCaretDown className=" text-[#ff5200] text-[1rem] md:text-[1.7rem] font-extrabold hover:cursor-pointer" />
