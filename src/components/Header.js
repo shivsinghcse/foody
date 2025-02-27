@@ -312,7 +312,7 @@ const Header = () => {
                                     Others
                                 </span>
                                 <span className="cursor-pointer px-1 group-hover:text-gray-400  truncate text-sm w-[220px]">
-                                    Lucknow, Uttar Pradesh, India
+                                    Koramangala, Bengaluru, Karnataka, India
                                 </span>
                             </>
                         )}

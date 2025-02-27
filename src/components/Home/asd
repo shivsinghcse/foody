@@ -3,9 +3,6 @@ import { useState } from 'react';
 import RestaurantCard from '../RestaurantCard';
 import { Link } from 'react-router';
 
-
-
-
 const TopRestaurant = ({ topRestaurant, topRestaurantChainTitle }) => {
     const [slide, setSlide] = useState(0);
 
@@ -53,7 +50,7 @@ const TopRestaurant = ({ topRestaurant, topRestaurantChainTitle }) => {
                                             className="shrink-0 grow duration-500"
                                             style={{
                                                 transform: `translateX(${
-                                                    slide * -103
+                                                    slide * -100
                                                 }%)`,
                                             }}
                                         >
