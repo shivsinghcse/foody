@@ -21,7 +21,7 @@ const RestaurantCard = ({ resdata }) => {
                 <div className="w-73 h-56 overflow-hidden rounded-[1rem] relative">
                     <img
                         src={cloudinaryImageId === undefined ? DUMMY_IMG : RES_IMG + cloudinaryImageId}
-                        className=" object-cover rounded-[1rem] "
+                        className=" object-cover rounded-[1rem] w-full h-full"
                         alt=""
                     />
 
