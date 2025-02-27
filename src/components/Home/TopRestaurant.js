@@ -3,9 +3,6 @@ import { useState } from 'react';
 import RestaurantCard from '../RestaurantCard';
 import { Link } from 'react-router';
 
-
-
-
 const TopRestaurant = ({ topRestaurant, topRestaurantChainTitle }) => {
     const [slide, setSlide] = useState(0);
 
@@ -41,7 +38,8 @@ const TopRestaurant = ({ topRestaurant, topRestaurantChainTitle }) => {
                             </button>
                         </div>
                     </div>
-                    <div className="flex gap-5 mt-5 md:mt-10 overflow-hidden">
+                    <div className="grid  grid-flow-col grid-rows-1  gap-x-5   mt-5 md:mt-10 overflow-hidden">
+                        {/* flex gap-5 This was default styling */}
                         {topRestaurant &&
                             topRestaurant.map((restaurant) => {
                                 return (
@@ -53,8 +51,8 @@ const TopRestaurant = ({ topRestaurant, topRestaurantChainTitle }) => {
                                             className="shrink-0 grow duration-500"
                                             style={{
                                                 transform: `translateX(${
-                                                    slide * -103
-                                                }%)`,
+                                                    slide * -300
+                                                }px)`,
                                             }}
                                         >
                                             <RestaurantCard
