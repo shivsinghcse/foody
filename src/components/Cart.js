@@ -103,7 +103,7 @@ const Cart = () => {
         <>
             {cartItems.length > 0 ? (
                 <div className="p-1 m-1">
-                    <div className="md:w-6/12 shadow md:shadow-md rounded-md mx-auto md:my-8 flex md:space-x-6 space-x-4 md:p-4 p-2 justify-center">
+                    <div className="md:w-4/12 shadow md:shadow-md rounded-md mx-auto md:my-8 flex md:space-x-6 space-x-4 md:p-4 p-2 justify-center">
                         <img
                             src={
                                 RES_CART_IMG + restaurant[0]?.cloudinaryImageId
@@ -125,7 +125,7 @@ const Cart = () => {
                     <div className="w-[100%]  my-5 md:w-[70%]  mx-auto">
                         <CartItemList items={cartItems} />
                     </div>
-                    <div className="text-white md:text-lg font-medium md:font-semibold bg-green-500 flex justify-between py-2 px-6 md:w-[75%] mx-auto md:my-10">
+                    <div className=" md:text-lg font-medium md:font-semibold border-2 border-gray-300 flex justify-between py-2 px-6 md:w-[70%] mx-auto md:my-10">
                         <p>Total Price :</p>
                         <p className="flex items-center">
                             <BsCurrencyRupee className="inline" />

@@ -289,7 +289,7 @@ const Header = () => {
                             <img
                                 src={LOGO_URL}
                                 alt="logo"
-                                className="w-full rounded-full border-1"
+                                className="w-full rounded-full border-2 border-[#ff5200]"
                             />
                         </div>
                     </Link>

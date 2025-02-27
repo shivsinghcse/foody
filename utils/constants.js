@@ -1,5 +1,5 @@
 export const LOGO_URL =
-    'https://img.freepik.com/free-vector/burger-cheese-with-fire-cartoon-vector-icon-illustration-food-object-icon-concept-isolated-premium_138676-5539.jpg?w=826&t=st=1695148160~exp=1695148760~hmac=15fbe29d7fb2f694e05ac95449f779d2228e6c1f46233dfd51c55f3bf5db4bdc';
+    'https://img.freepik.com/premium-vector/tasty-food-chef-logo-mascot-template_190190-133.jpg';
 
 export const LOGIN_IMG =
     'https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_147,h_140/Image-login_btpq7r';
