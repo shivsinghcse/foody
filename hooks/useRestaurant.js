@@ -13,9 +13,9 @@ const useRestaurant = () => {
     const [categoryData, setCategoryData] = useState([]);
 
     const userLocation = useSelector((store) => store.location.userLocation);
-    // console.log('location', userLocation);
-    const lat = userLocation?.lat ? userLocation?.lat : 26.8466937;
-    const lng = userLocation?.lng ? userLocation?.lng : 80.94616599999999;
+    console.log('location', userLocation);
+    const lat = userLocation?.lat ? userLocation?.lat : 12.9352403;
+    const lng = userLocation?.lng ? userLocation?.lng : 77.624532;
 
     useEffect(() => {
         fetchTopRestaurant();
