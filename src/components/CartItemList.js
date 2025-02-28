@@ -30,10 +30,10 @@ const CartItemList = ({ items }) => {
         dispatch(addItem(item));
     };
     const decreaseQuantity = (item) => {
-        if (item.quantity === 1) {
-            dispatch(removeItem(item));
+        // if (item.quantity === 1) {
+            // dispatch(removeItem(item));
             // dispatch(clearRestaurant());
-        }
+        // }
         dispatch(removeItem(item));
     };
     return (
