@@ -32,7 +32,7 @@ const CartItemList = ({ items }) => {
     const decreaseQuantity = (item) => {
         if (item.quantity === 1) {
             dispatch(removeItem(item));
-            dispatch(clearRestaurant());
+            // dispatch(clearRestaurant());
         }
         dispatch(removeItem(item));
     };
